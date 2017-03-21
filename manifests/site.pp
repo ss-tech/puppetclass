@@ -47,7 +47,7 @@ node default {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => 'TIL how to manage files with Puppet!',
+    content => "TIL how to manage files with Puppet!\n",
   }
   include role::classroom
 }
