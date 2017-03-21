@@ -44,7 +44,7 @@ node default {
   #   class { 'my_class': }
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     path => '/usr/local/bin',
-    create => '/tmp/modify_motd',
+    creates => '/tmp/modify_motd',
   }
   
   include role::classroom
