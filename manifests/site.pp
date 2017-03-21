@@ -42,5 +42,13 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+  file { '/etc/motd':
+    ensure => file,
+    owner => root,
+    group => root,
+    mode => 644,
+    content => "Hey puppet is fun!\n",
+  }
+  
   include role::classroom
 }
