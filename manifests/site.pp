@@ -42,12 +42,16 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  file { '/etc/motd':
-    ensure => 'file',
-    owner => 'root',
-    group => 'staff',
-    mode => '0644',
-    content => "Hi, there!\n",
+  #file { '/etc/motd':
+  #ensure => 'file',
+  #owner => 'root',
+  #group => 'staff',
+  #mode => '0644',
+  #content => "Hi, there!\n",
+  #  }
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":  
+    path => '/usr/bin:/usr/local/bin',  
+    creates => '/etc/motd',
     }
   include role::classroom
 }
