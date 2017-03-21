@@ -1,4 +1,1 @@
-class profile::users {
-  # [...]
-  include fundamentals
-}
+include ::users
