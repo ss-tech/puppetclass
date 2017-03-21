@@ -46,7 +46,7 @@ node default {
     path => '/usr/local/bin',
     creates => '/root/modify_motd',
   }
-  
+  include users
   include role::classroom
 
   
