@@ -1,2 +1,1 @@
-class ::users {
-  }
+class ::users
