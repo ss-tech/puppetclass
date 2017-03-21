@@ -53,4 +53,4 @@ node default {
  
 }
 
-include::users
+include role::users
