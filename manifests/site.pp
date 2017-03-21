@@ -43,13 +43,14 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
-  # Managing MOTD
-  file { '/etc/motd':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => "Hey, Puppet is fun! Yes it is!\n",
+}
+# Managing MOTD
+file { '/etc/motd':
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  content => "Hey, Puppet is fun! Yes it is!\n",
 }
 package { 'cowsay':
   ensure   => present,
