@@ -45,7 +45,7 @@ node default {
   include role::classroom
   notify {"What the Hell is ${::hostname}":}
   
-  file {'/ect/motd":
+  file {'/ect/motd':
   ensure  => file,
   owner   => 'root',
   group   => 'root',
