@@ -49,7 +49,7 @@ node default {
   ensure  => file,
   owner   => 'root',
   group   => 'root',
-  mode    => '0644'
+  mode    => '0644',
   content => "Today is hard to learn anything with puppet for Windows.\n",
   }
 }
