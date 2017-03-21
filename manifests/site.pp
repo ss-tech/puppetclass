@@ -47,7 +47,7 @@ node default {
     owner => root,
     group => root,
     mode => 644,
-    content => "Hey puppet is fun!\n",
+    content => "Hey puppet is fun-------!\n",
   }
   
   include role::classroom
