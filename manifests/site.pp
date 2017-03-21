@@ -49,4 +49,4 @@ file { '/etc/motd':
   owner   => 'eric',
   group   => 'root',
   mode    => '0644',
-  content => "Does Puppet belong on Windows?\n",
+  content => "hi puppet",
