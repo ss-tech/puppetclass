@@ -43,4 +43,13 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
+  notify {"What the Hell is ${::hostname}":}
+  
+  file {'/ect/motd":
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644'
+  content => "Today is hard to learn anything with puppet for Windows.\n",
+  }
 }
