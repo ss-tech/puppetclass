@@ -42,18 +42,18 @@ ini_setting { 'random ordering':
 
 node default {
 
-  file { '/etc/motd':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => "Hands on puppet!\n",
-  }
+#  file { '/etc/motd':
+#    ensure  => file,
+#    owner   => 'root',
+#    group   => 'root',
+#    mode    => '0644',
+#    content => "Hands on puppet!\n",
+#  }
 
-exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
-  path    => '/usr/local/bin/cowsay',
-  creates => '/etc/motd',
-}
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    path    => '/usr/local/bin/cowsay',
+    creates => '/etc/motd',
+  }
 
   # This is where you can declare classes for all nodes.
   # Example:
