@@ -39,12 +39,8 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node default {
-  file { '/etc/motd':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0777',
-    content => "an intersting sentence",
+  exec {"cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    creates => '/etc/motd'
   }
-  include role::classroom
+    include role::classroom
 }
