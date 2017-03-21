@@ -50,6 +50,11 @@ node default {
     content => "Hands on puppet!\n",
   }
 
+exec { 'cowsay 'Welcome to ${::fqdn}!' > /etc/motd':
+  path    => '//usr/local/bin/cowsay',
+  creates => '/etc/motd',
+}
+
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
