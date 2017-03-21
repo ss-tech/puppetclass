@@ -42,5 +42,12 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+  fill { 'etc/motd':
+    ensure => file,
+    group => 'root',
+    owner => 'root',
+    mode => '0644',
+    content => 'I am cool'
+   }
   include role::classroom
 }
