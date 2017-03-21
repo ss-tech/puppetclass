@@ -43,10 +43,3 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
-}
-file { '/etc/motd':
-  ensure  => file,
-  owner   => 'eric',
-  group   => 'root',
-  mode    => '0644',
-  content => "hi puppet",
