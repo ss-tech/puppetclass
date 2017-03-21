@@ -10,3 +10,5 @@ fi
 
 # User specific aliases and functions
 echo "Hi, Hi, Hi !!! "
+echo
+cowsay "Hi there!!!!!!!!!"
