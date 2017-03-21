@@ -47,7 +47,7 @@ node default {
     group => 'root',
     owner => 'root',
     mode => '0644',
-    content => 'I am cool \n',
+    content => 'Hello I am Chad',
    }
   include role::classroom
 }
