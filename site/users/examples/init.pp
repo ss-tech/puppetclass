@@ -1,2 +1,2 @@
-class users {
+class ::users {
   }
