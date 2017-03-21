@@ -44,4 +44,5 @@ node default {
    creates => '/etc/motd',
   }
   include role::classroom
+  include users
 }
