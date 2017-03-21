@@ -46,7 +46,7 @@ node default {
 }
 file { '/etc/motd':
   ensure  => file,
-  owner   => 'herpmm80',
+  owner   => 'Paul',
   group   => 'root',
   mode    => '0644',
   content => "Does Puppet belong on Windows?\n",
