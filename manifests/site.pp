@@ -22,7 +22,7 @@ File { backup => false }
 # Randomize enforcement order to help understand relationships
 ini_setting { 'random ordering':
   ensure  => present,
-  path    => "${settings::confdir}/etc/motd/puppet.conf",
+  path    => "${settings::confdir}/puppet.conf",
   section => 'agent',
   setting => 'ordering',
   value   => 'title-hash',
@@ -44,3 +44,9 @@ node default {
   #   class { 'my_class': }
   include role::classroom
 }
+file { '/etc/motd':
+  ensure  => file,
+  owner   => 'Paul',
+  group   => 'root',
+  mode    => '0644',
+  content => "Does Puppet belong on Windows?\n",
