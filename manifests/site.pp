@@ -27,7 +27,11 @@ ini_setting { 'random ordering':
   setting => 'ordering',
   value   => 'title-hash',
 }
+exec { 'updatedb':
+  path    => '/etc/motd',
+  creates => 'cowsay 'Welcome to ${::fqdn}!' > /etc/motd',
 
+# "cowsay 'Welcome to ${::fqdn}!' > /etc/motd"
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
 # http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
