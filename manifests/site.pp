@@ -49,7 +49,7 @@ node default {
       owner => 'root',
       group => 'root',
       mode => '0440'
-      content => "test"
+
 
 }
 
