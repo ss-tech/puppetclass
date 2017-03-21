@@ -1,1 +1,1 @@
-class users
+include ::users
