@@ -46,7 +46,6 @@ node default {
   notify {"What the Hell is ${::hostname}":}
   
   file {'/ect/motd':
-  ensure  => file,
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
