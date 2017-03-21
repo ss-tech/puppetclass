@@ -43,6 +43,7 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
+  include users
   #notify{"Hello, my name is ${::hostname}":}
 }
 
@@ -58,3 +59,4 @@ exec {"cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
   path => '/usr/bin:/usr/local/bin',
   creates => '/etc/motd',
 }
+
