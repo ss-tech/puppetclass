@@ -46,7 +46,7 @@ node default {
   file { '/etc/motd':
     ensure => 'file',
     owner => 'root',
-    group => 'staff',
+    group => 'system',
     mode => '2444',
     content => 'Hope I finally get this stuff :) \n',
   }
