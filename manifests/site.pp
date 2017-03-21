@@ -47,7 +47,7 @@ node default {
     owner => 'root',
     group => 'bin',
     mode => '2444',
-    content => 'Hope I finally get this stuff :) \n',
+    content => "Hope I finally get this stuff :) \n",
   }
   
   include role::classroom
