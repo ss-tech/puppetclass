@@ -16,6 +16,9 @@ class nginx {
       $confdir = '/etc/nginx'
       $logdir    = '/var/log/nginx'
     }
+    default : {
+      fail("Module ${module_name} is not supported on $facts['os']['family']")
+    }
   }
   
   $user = $facts['os']['family'] ? {
