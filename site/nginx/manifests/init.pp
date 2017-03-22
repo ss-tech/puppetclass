@@ -46,7 +46,7 @@ class nginx {
   }
   file { "${confdir}/nginx.conf":
     ensure  => file,
-    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, $logdir => logdir }),
+    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, logdir => logdir }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
