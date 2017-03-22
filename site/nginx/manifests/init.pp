@@ -3,13 +3,13 @@ class nginx {
   case $::osfamily {
     'RedHat': {
         $runas = "nginx"
-        $logfile = "/var/log/nginx"
+        $logfile = "/var/log/nginx/access.log"
         $owner =  "root"
         $group =  "root"
     }
     'Debian': {
         $runas = "www-data"
-        $logfile = "/var/log/nginx"
+        $logfile = "/var/log/nginx/access.log"
         $owner =  "root"
         $group =  "root"    }
   }
@@ -38,7 +38,7 @@ class nginx {
     ensure  => file,
     require => Package['nginx'],
     notify  => Service['nginx'],
-    content  => epp('nginx/nginx.conf.epp', { runas => $runas, logfile => $logifile,})
+    content  => epp('nginx/nginx.conf.epp', { runas => $runas, logfile => $logfile,})
 
   }
   
@@ -50,7 +50,7 @@ class nginx {
     ensure  => file,
     require => Package['nginx'],
     notify  => Service['nginx'],
-    content  => epp('nginx/default.conf.epp', { runas => $runas, logfile => $logifile,})
+    content  => epp('nginx/default.conf.epp', { runas => $runas, logfile => $logfile,})
   }
   
   service { 'nginx':
