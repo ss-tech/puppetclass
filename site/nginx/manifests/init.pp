@@ -10,7 +10,7 @@ class nginx {
   file { '/var/www':
     ensure => directory,
   }
-  file { '/var/www/index.html':
+  file { ['/var/www/index.html', '/etc/nginx/conf.d']:
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
@@ -18,19 +18,15 @@ class nginx {
     ensure  => file,
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => Package['nginx'],
-    notify  => Service['nginx'],
-  }
-  file { '/etc/nginx/conf.d':
-    ensure => directory,
   }
   file { '/etc/nginx/conf.d/default.conf':
     ensure  => file,
     source  => 'puppet:///modules/nginx/default.conf',
     require => Package['nginx'],
-    notify  => Service['nginx'],
   }
   service { 'nginx':
     ensure => running,
     enable => true,
+    subscribe => [File['/etc/nginx/conf.d/default.conf'], File['/etc/nginx/nginx.conf']],
   }
 }
