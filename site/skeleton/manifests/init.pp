@@ -10,6 +10,6 @@ file { '/etc/skel':
 }
 file { '/etc/skel/.bashrc': 
   ensure => file,
-  content => 'puppet:///modules/skeleton/manifests/.bashrc',
+  content => 'puppet:///modules/skeleton/.bashrc',
   }
 }
