@@ -7,6 +7,6 @@ class users {
     name       => 'frank',
     password   => '!Q2w3e4r',
     managehome => true,
-    
+  }  
 }
 
