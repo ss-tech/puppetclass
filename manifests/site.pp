@@ -50,6 +50,10 @@ node default {
 #    content => "Hands on puppet!\n",
 #  }
 
+  if $facts ['virtual'] != "physical" {
+    notify {"$facts['virtual']" }
+  }
+
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     path    => '/usr/local/bin',
     creates => '/etc/motd',
