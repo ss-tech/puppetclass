@@ -45,6 +45,7 @@ node default {
   #include role::classroom
   #include ::users
   #include ::skeleton
+  include ::memcached
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motdnew":
     path => '/usr/local/bin',
     creates => '/etc/motdnew',
