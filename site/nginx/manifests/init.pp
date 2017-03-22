@@ -24,6 +24,7 @@ class nginx {
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => File['nginx.config.root'],
     require => Package['nginx'],
+    notify => Service['nginx'],
   }
   
   file { 'nginx.default.conf':
@@ -34,6 +35,7 @@ class nginx {
     path => '/etc/nginx/conf.d/default.conf',
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => File['nginx.config.include'],
+    notify => Service['nginx'],
   }
 
 
@@ -42,7 +44,6 @@ class nginx {
 
   service { 'nginx':
     ensure  => running
-
+    enable    => true,
   }
-
 }
