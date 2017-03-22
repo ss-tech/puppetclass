@@ -49,7 +49,7 @@ node default {
   include role::classroom
   include ::skeleton
   include ::nginx
-  if $::virtual != 'physical' {
+  if $::is_virtual {
     $vmname = capitalize($::virtual)
     notify { "This is a ${vmname} machine!": }
   }
