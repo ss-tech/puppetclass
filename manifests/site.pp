@@ -57,8 +57,8 @@ node default {
     creates => "/etc/motd",
     path    => "/usr/local/bin",
   }
-  if $facts['fqdn'] =~ /.*?\.vm/ {
-    notify "This machine is a vm"
+  if $::fqdn =~ /.*?\.vm/ {
+    notify { "This machine is a ${::virtual} vm" }
   }
   include role::classroom
   include ::skeleton
