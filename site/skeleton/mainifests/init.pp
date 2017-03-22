@@ -1,5 +1,5 @@
 
-class skeleton { '':
+class skeleton {
   file {'etc/skel':
     ensure => directory,
     owner => root,
