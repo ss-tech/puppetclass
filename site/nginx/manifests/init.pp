@@ -1,34 +1,63 @@
 class nginx {
-  package { 'nginx':
+case $facts['os']['name'] {
+  'redhat','debian', {
+      $package = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $docroot = '/var/www'
+      $confdir = '/etc/nginx'
+      $logdir = '/var/log/nginx'
+      }
+  'windows' : {
+    $package = 'nginx-service'
+    $owner = 'Administrator'
+    $group = 'Administrators'
+    $docroot = 'C:/ProgramData/nginx/html'
+    $confdir = 'C:/ProgramData/nginx'
+    $logdir = 'C:/ProgramData/nginx/logs'
+    }
+}
+$user = $facts['os']['family'] ? {
+  'redhat' => 'nginx',
+  'debian' => 'www-data',
+  'windows' => 'nobody',
+}
+  package { $package:
     ensure => present,
   }
   File { 
-    owner  => 'root',
-    group  => 'root',
+    owner  => $owner,
+    group  => $group,
     mode   => '0664',
     }
-  file { '/var/www':
+  file { $docroot:
     ensure => directory,
     mode   => '0775',
   }
-  file { '/var/www/index.html':
+  file { "$docroot"/index.html':
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { '/etc/nginx/nginx.conf':
+  file { '$confdir/nginx.conf':
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
-  }
-  file { '/etc/nginx/conf.d':
+    content => epp('nginx/nginx.conf.epp',
+      {
+        user => $user,
+        confdir => $confdir,
+        logdir => $logdir,
+      }),
+    notify => Service['nginx'],,
+    }
+  file { '$confdir/conf.d':
     ensure => directory,
     mode   => '0775',
   }
   file { '/etc/nginx/conf.d/default.conf':
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
-    require => Package['nginx'],
+    content => epp('nginx/default.conf.epp',
+      {
+       docroot => $docroot,
+      }),
     notify  => Service['nginx'],
   }
   service { 'nginx':
