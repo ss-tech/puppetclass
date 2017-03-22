@@ -1,30 +1,53 @@
 class nginx {
+  case $facts['os']['family'] {
+    'redhat','debian' : {
+      $package   = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $docRoot   = '/var/www'
+      $configDir = '/etc/nginx'
+      $logDir    = '/var/log/nginx'
+    }
+    'windows' : {
+      $package   = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $docRoot   = '/var/www'
+      $configDir = '/etc/nginx'
+      $logDir    = '/var/log/nginx'
+    }
+  }
+  
+  $user = $facts['os']['family'] ? {
+    'redhat'  = 'nginx',
+    'debian'  = 'www-data',
+    'windows' = 'nobody',
+  }
+    
   File {
-    owner  => 'root',
-    group  => 'root',
+    owner  => $owner,
+    group  => $group,
     mode   => '0664',
   }
   
-  package { 'nginx':
+  package { $package:
     ensure => present,
+    alias  => 'nginx'
   }
-  file { '/var/www':
+  file { [ $docRoot, "${configDir}/conf.d" ] :
     ensure => directory,
   }
-  file { '/var/www/index.html':
+  file { "${$docRoot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { '/etc/nginx/nginx.conf':
+  file { "${configDir}/nginx.conf":
     ensure  => file,
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  file { '/etc/nginx/conf.d':
-    ensure => directory,
-  }
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${configDir}/conf.d/default.conf":
     ensure  => file,
     source  => 'puppet:///modules/nginx/default.conf',
     require => Package['nginx'],
