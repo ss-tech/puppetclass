@@ -50,5 +50,5 @@ ini_setting { 'random ordering':
 #}
 if $::virtual != 'physical' {
   $vmname = capitalize($::virtual)
-  notify { "This is a ${vmname} machine" }
+  notify { "This is a ${vmname} machine": }
   }
