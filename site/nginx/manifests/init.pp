@@ -1,6 +1,6 @@
 class nginx {
 
-  $nginxserviceaccount = $facts['os']['name'] ? {
+  $nginx_service_account = $facts['os']['name'] ? {
     'ubuntu' => 'nginx',
     'redhat' => 'nginx',
     'windows' => 'noboxy',
