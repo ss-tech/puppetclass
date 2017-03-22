@@ -52,7 +52,7 @@ class nginx {
   }
   file { "${configDir}/conf.d/default.conf":
     ensure  => file,
-    content => epp('nginx/default.conf.epp' { docroot => $docroot }),
+    content => epp('nginx/default.conf.epp', { docroot => $docroot }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
