@@ -6,12 +6,28 @@ class nginx {
   }
 
   # Directories
-  file { [ 'nginx.www.root', 'nginx.config.root', 'nginx.config.include' ]:
+  file { 'nginx.www.root':
     ensure => directory,
     owner => 'root',
     group => 'root',
     mode => '0755'
-    path => [ '/var/www', '/etc/nginx', '/etc/nginx/conf.d' ],
+    path => '/var/www',
+  }
+  
+  file { 'nginx.config.root':
+    ensure => directory,
+    owner => 'root',
+    group => 'root',
+    mode => '0755'
+    path => '/etc/nginx',
+  }
+  
+  file { 'nginx.config.include' :
+    ensure => directory,
+    owner => 'root',
+    group => 'root',
+    mode => '0755'
+    path => '/etc/nginx/conf.d,
   }
   
   # Files
