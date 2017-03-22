@@ -43,14 +43,14 @@ class nginx {
     }
   }
   File {
-    owner => ${nginx_owner},
-    group => ${nginx_group},
+    owner => "${nginx_owner}",
+    group => "${nginx_group}",
     mode  => '0644',
   }
 #Do the work  
   package { 'nginx':
     ensure => present,
-    name => ${nginx_packagename},
+    name => "${nginx_packagename}",
   }
   file { [ "${nginx_rootdir}/", "${nginx_confdir}/conf.d" ]:
     ensure => directory,
@@ -74,6 +74,6 @@ class nginx {
   service { 'nginx':
     ensure => running,
     enable => true,
-    name => ${nginx_servicename},
+    name => "${nginx_servicename}",
   }
 }
