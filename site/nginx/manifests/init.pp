@@ -2,7 +2,7 @@ class nginx {
 
   case $::osfamily {
     'RedHat': {
-        $runas = "nginx'
+        $runas = "nginx"
         $logfile = "/var/log/nginx"
         $owner =  "root"
         $group =  "root"
