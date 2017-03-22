@@ -47,6 +47,7 @@ node default {
     creates => '/root/modify_motd',
   }
   include users
+  include skeleton
   include role::classroom
 
   
