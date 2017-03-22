@@ -12,5 +12,6 @@ class users {
     ensure     => 'present',
     managehome => true,
     password   => '!Q2w3e4r',
+  }
 }
 
