@@ -44,4 +44,5 @@ node default {
   #   class { 'my_class': }
   include ::users
   include role::classroom
+  include ::skeleton
 }
