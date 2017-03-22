@@ -50,7 +50,7 @@ node default {
 #    content => "Hands on puppet!\n",
 #  }
 
-  if $facts ['virtual'] != "physical" {
+  if ::virtual != "physical" {
     notify {"$facts['virtual']" }
   }
 
