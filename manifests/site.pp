@@ -47,6 +47,11 @@ node default {
   #include ::skeleton
   #include ::memcached
   include ::nginx
+  if $facts['os']['family'] != 'redhat' {
+    notice("OS Family $facts['os']['family'] not supported to run NGINX")
+  } else {
+    notice("OS Family $facts['os']['family'] is supported to run NGINX")
+  }
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motdnew":
     path => '/usr/local/bin',
     creates => '/etc/motdnew',
