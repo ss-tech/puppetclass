@@ -7,7 +7,7 @@ class memcached {
     owner => 'root',
     group => 'root',
     mode => '0644',
-    path => '/etc/sysconfig/memcached'
+    path => '/etc/sysconfig/memcached',
     source => 'puppet:///modules/memcached/memcached.conf',
     require => Package['memcached'],
   }
