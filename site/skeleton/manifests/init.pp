@@ -1,4 +1,3 @@
-
 class users {
 file { '/etc/skel':
   ensure => 'directory',
