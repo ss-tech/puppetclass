@@ -47,10 +47,8 @@ node default {
   #include ::skeleton
   #include ::memcached
   include ::nginx
-  if $facts['os']['family'] != 'redhat' {
-    fail("OS Family $facts['os']['family'] not supported to run NGINX")
-  } else {
-    notice("OS Family $facts['os']['family'] is supported to run NGINX")
+  if $::virtual != 'physical' {
+    $vmname = capitalize(${vmname})
   }
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motdnew":
     path => '/usr/local/bin',
