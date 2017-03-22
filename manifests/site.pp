@@ -42,7 +42,7 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-    if $::virtual != 'physical' {
+    if $::is_virtual {
     $vmname = capitalize($::virtual)
     notify { "This is a ${vmname} virtual machine.": }
    }
