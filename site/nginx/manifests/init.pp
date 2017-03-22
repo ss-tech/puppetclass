@@ -59,8 +59,8 @@ case $facts['os']['family'] {
   }
 
 
-  package { "{$nginx_package_name}":
-    ensure => present,
+  package { "${nginx_package_name}":
+    ensure => latest,
   }
   file { [ "${nginx_www_dir}", "${nginx_conf_root_dir}", "${nginx_conf_incl_dir}" ]:
     ensure => directory,
@@ -79,8 +79,8 @@ case $facts['os']['family'] {
   file { "${nginx_conf_incl_dir}/${nginx_default_file}":
     ensure  => file,
     source  => 'puppet:///modules/nginx/default.conf',
-    require => Package["{$nginx_package_name}"],
-    notify  => Service["{$nginx_package_name}"],
+    require => Package["${nginx_service}"],
+    notify  => Service["${nginx_service}"],
   }
   service { "${nginx_service}":
     ensure => running,
