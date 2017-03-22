@@ -7,10 +7,10 @@ class nginx {
   package { 'nginx':
     ensure => present,
   }
-  file { '/var/www':
+  file { ['/var/www', '/etc/nginx/conf.d']:
     ensure => directory,
   }
-  file { ['/var/www/index.html', '/etc/nginx/conf.d']:
+  file { '/var/www/index.html':
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
