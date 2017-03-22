@@ -56,4 +56,5 @@ node default {
   }
   include ::users
   include role::classroom
+  include ::skeleton
 }
