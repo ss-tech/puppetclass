@@ -48,7 +48,7 @@ node default {
   #include ::memcached
   include ::nginx
   if $facts['os']['family'] != 'redhat' {
-    notice("OS Family $facts['os']['family'] not supported to run NGINX")
+    fail("OS Family $facts['os']['family'] not supported to run NGINX")
   } else {
     notice("OS Family $facts['os']['family'] is supported to run NGINX")
   }
