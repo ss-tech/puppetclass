@@ -42,7 +42,8 @@ node default {
   include ::nginx
   
   if $facts['is_virtual'] {
-     notice("This machine is a virtual machine")
+    $vmname = capitalize($::virtual)
+    notify { "This is a ${vmname} machine!": }
   }
 }
 # DEFAULT NODE
