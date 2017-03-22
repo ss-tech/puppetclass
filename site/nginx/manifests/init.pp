@@ -9,8 +9,7 @@ class nginx {
   }
    file { '/var/www':
      ensure => directory,
-     mode   => '0775',
-   }
+  }
    file { '/var/www/index.html':
      ensure => file,
      source => 'puppet:///modules/nginx/index.html',
