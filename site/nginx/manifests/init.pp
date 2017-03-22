@@ -1,5 +1,12 @@
 class nginx {
 
+  $nginxserviceaccount = $facts['os']['name'] ? {
+    'ubuntu' => 'nginx',
+    'redhat' => 'nginx'
+    'windows' => 'noboxy'
+    default  => 'nginx',
+  }
+
   $nginx_www_dir = '/var/www'
   $nginx_conf_root_dir = '/etc/nginx'
   $nginx_conf_incl_dir = '/etc/nginx/conf.d'
