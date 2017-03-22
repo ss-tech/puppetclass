@@ -54,7 +54,6 @@ node default {
     creates => "/etc/motd",
     path    => "/usr/local/bin",
   }
-  include ::users
   include role::classroom
   include ::skeleton
 }
