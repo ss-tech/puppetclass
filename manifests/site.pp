@@ -15,8 +15,9 @@
 # This configures puppet agent and puppet inspect to back up file contents when
 # they run. The Puppet Enterprise console needs this to display file contents
 # and differences.
-$vmtype = capitalize("${::virtual}")
-
+if "${::is_virtual}"{
+  $vmtype = capitalize("${::virtual}")
+}
 # Disable filebucket by default for all File resources:
 File { backup => false }
 
