@@ -28,6 +28,19 @@ ini_setting { 'random ordering':
   value   => 'title-hash',
 }
 
+
+node default {
+  # This is where you can declare classes for all nodes.
+  # Example:
+  #   class { 'my_class': }
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    path => '/usr/local/bin',
+    creates => '/etc/motd',
+  }
+  include role::classroom
+  include ::skeleton
+  include ::nginex
+}
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
 # http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
