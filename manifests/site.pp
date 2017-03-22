@@ -54,6 +54,6 @@ node default {
     creates => '/etc/motd',
     }
   include role::classroom
-  include ::users
+  #include ::users
   include skeleton
   }
