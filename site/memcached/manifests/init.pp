@@ -7,7 +7,7 @@ class memcached {
   owner => 'root',
   group => 'root',
   mode => '0644',
-  source => 'puppet:///modules/memcached/memcached',
+  source => 'puppet:///modules/memcached/memcached.conf',
   require => Package['memcached'],
  }
  service { 'memcached':
