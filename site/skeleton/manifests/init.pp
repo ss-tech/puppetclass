@@ -11,7 +11,6 @@ class skeleton {
     group   => 'root',
     mode    => '0755',
     source  => 'puppet:///modules/skeleton/files/.bashrc',
-    content => "This is just an example bashrc file that does nothing",
   }
 }
 
