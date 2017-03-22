@@ -10,7 +10,7 @@ class skeleton {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    source  => 'puppet:///modules/skeleton/files/bashrc',
+    source  => 'puppet:///modules/skeleton/bashrc',
   }
 }
 
