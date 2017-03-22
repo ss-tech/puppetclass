@@ -43,12 +43,4 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
-  include ::users
-}
-file { '/etc/motd':
-  ensure  => file,
-  owner   => 'Paul',
-  group   => 'root',
-  mode    => '0644',
-  content => "Does Puppet belong on Windows?\n",
 }
