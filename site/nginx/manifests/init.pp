@@ -4,17 +4,17 @@ class nginx {
       $package   = 'nginx'
       $owner = 'root'
       $group = 'root'
-      $docRoot   = '/var/www'
-      $configDir = '/etc/nginx'
-      $logDir    = '/var/log/nginx'
+      $docroot   = '/var/www'
+      $confdir = '/etc/nginx'
+      $logdir    = '/var/log/nginx'
     }
     'windows' : {
       $package   = 'nginx'
       $owner = 'root'
       $group = 'root'
-      $docRoot   = '/var/www'
-      $configDir = '/etc/nginx'
-      $logDir    = '/var/log/nginx'
+      $docroot   = '/var/www'
+      $confdir = '/etc/nginx'
+      $logdir    = '/var/log/nginx'
     }
   }
   
@@ -34,22 +34,22 @@ class nginx {
     ensure => present,
     alias  => 'nginx'
   }
-  file { [ $docRoot, "${configDir}/conf.d" ] :
+  file { [ $docroot, "${confdir}/conf.d" ] :
     ensure => directory,
   }
-  file { "${$docRoot}/index.html":
+  file { "${$docroot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { "${configDir}/nginx.conf":
+  file { "${confdir}/nginx.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, $logdir => logdir }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
   file { "${configDir}/conf.d/default.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
+    content => epp('nginx/default.conf.epp' { docroot => $docroot }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
