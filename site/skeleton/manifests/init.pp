@@ -9,6 +9,6 @@ class skeleton{
     ensure  => 'file',
     group   => 'root',
     owner   => 'root',
-    source => 'puppet:///modules/skeleton/bashrc'
+    source => 'puppet:///modules/skeleton/bashrc',
   }
 }
