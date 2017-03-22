@@ -48,8 +48,11 @@ node default {
   #include ::memcached
   include ::nginx
   if $::virtual != 'physical' {
-    $vmname = capitalize(${vmname})
+    $vmname = capitalize($::virtual)
+    notify { "This is a ${vmname} machine!": }
   }
+
+
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motdnew":
     path => '/usr/local/bin',
     creates => '/etc/motdnew',
