@@ -1,6 +1,6 @@
 
 class skeleton {
-  file {'etc/skel':
+  file { '/etc/skel':
     ensure => directory,
     owner => root,
     group => root,
