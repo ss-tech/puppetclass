@@ -93,6 +93,6 @@ support:	postmaster
 decode:		root
 
 # Person who should get root's mail
-<% if $admin.isset and $admin != 'root' { -%>
+<% if $admin != undef && $admin != 'root' { -%>
 root: <% $admin %>
 <% } -%>
