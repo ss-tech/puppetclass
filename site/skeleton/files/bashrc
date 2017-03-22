@@ -9,4 +9,4 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-cowsay "file management test yet again"
+cowsay "file management test yet again direct from intellij"
