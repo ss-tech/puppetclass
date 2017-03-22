@@ -1,33 +1,79 @@
 class nginx {
+#Defaults and Variables
+  case $facts['os']['family'] {
+    'RedHat': {
+      $nginx_packagename = 'nginx'
+      $nginx_owner = 'root'
+      $nginx_group = 'root'
+      $nginx_rootdir = '/var/www'
+      $nginx_confdir = '/etc/nginx'
+      $nginx_logdir = '/var/log/nginx'
+      $nginx_servicename = 'nginx'
+      $nginx_user = 'nginx'
+    }
+    'Debian': {
+      $nginx_packagename = 'nginx'
+      $nginx_owner = 'root'
+      $nginx_group = 'root'
+      $nginx_rootdir = '/var/www'
+      $nginx_confdir = '/etc/nginx'
+      $nginx_logdir = '/var/log/nginx'
+      $nginx_servicename = 'nginx'
+      $nginx_user = 'www-data'    
+    }
+    'Windows': {
+      $nginx_packagename = 'nginx-service'
+      $nginx_owner = 'Administrator'
+      $nginx_group = 'Administrators'
+      $nginx_rootdir = 'C:/ProgramData/nginx/html'
+      $nginx_confdir = 'C:/ProgramData/nginx'
+      $nginx_logdir = 'C:/ProgramData/nginx/logs'
+      $nginx_servicename = 'nginx'
+      $nginx_user = 'nobody'   
+    }
+    default: {
+      $nginx_packagename = 'nginx'
+      $nginx_owner = 'root'
+      $nginx_group = 'root'
+      $nginx_rootdir = '/var/www'
+      $nginx_confdir = '/etc/nginx'
+      $nginx_logdir = '/var/log/nginx'
+      $nginx_servicename = 'nginx'
+      $nginx_user = 'nginx'
+    }
+  }
   File {
-    owner => 'root',
-    group => 'root',
+    owner => ${nginx_owner},
+    group => ${nginx_group},
     mode  => '0644',
   }
+#Do the work  
   package { 'nginx':
     ensure => present,
+    name => ${nginx_packagename},
   }
-  file { [ '/var/www', '/etc/nginx/conf.d' ]:
+  file { [ "${nginx_rootdir}/", "${nginx_confdir}/conf.d" ]:
     ensure => directory,
   }
-  file { '/var/www/index.html':
+  file { "${nginx_rootdir}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { '/etc/nginx/nginx.conf':
+  file { "${nginx_confdir}/nginx.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    content => epp('nginx/nginx.conf.epp'),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${nginx_confdir}/conf.d/default.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
+    content => epp('nginx/default.conf.epp'),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
   service { 'nginx':
     ensure => running,
     enable => true,
+    name => ${nginx_servicename},
   }
 }
