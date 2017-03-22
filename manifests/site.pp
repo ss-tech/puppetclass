@@ -38,9 +38,7 @@ ini_setting { 'random ordering':
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-if $::hostname =~ /.*?\.vm/ {
-  notify "This machine is a vm"
-}
+
 
 
 node default {
@@ -58,6 +56,9 @@ node default {
     command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
     creates => "/etc/motd",
     path    => "/usr/local/bin",
+  }
+  if $facts['fqdn'] =~ /.*?\.vm/ {
+    notify "This machine is a vm"
   }
   include role::classroom
   include ::skeleton
