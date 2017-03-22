@@ -12,7 +12,7 @@ file { '/etc/systemconfig/memcached':
   }
 service { 'memcached':
   ensure => running,
-  enable => true
+  enable => true,
   subscribe => File['memcached'],
   }
 }
