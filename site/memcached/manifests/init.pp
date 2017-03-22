@@ -10,4 +10,5 @@ service { 'memcached':
 file { '/etc/sysconfig/memcached':
   ensure => file,
   source => 'puppet:///modules/memcached/memcached',
+  require => Package ['memcached'],
 }
