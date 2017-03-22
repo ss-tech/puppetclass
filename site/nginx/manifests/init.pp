@@ -24,14 +24,14 @@ class nginx {
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { ${nginx_conf_root_dir}/${nginx_conf_file}":
+  file { "${nginx_conf_root_dir}/${nginx_conf_file}":
     ensure  => file,
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
 
-  file { ${nginx_conf_incl_dir}/${nginx_default_file}":
+  file { "${nginx_conf_incl_dir}/${nginx_default_file}":
     ensure  => file,
     source  => 'puppet:///modules/nginx/default.conf',
     require => Package['nginx'],
