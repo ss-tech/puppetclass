@@ -40,6 +40,10 @@ node default {
   include role::classroom
   include ::skeleton
   include ::nginx
+  
+  if $facts['is_virtual'] {
+     notice("This machine is a virtual machine")
+  }
 }
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
