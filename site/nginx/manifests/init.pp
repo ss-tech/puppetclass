@@ -2,15 +2,15 @@ class nginx {
 
 case $facts['os']['family'] {
   'debian': {
-    $nginx_package_name = 'nginx',
-    $nginx_owner = 'root',
-    $nginx_group = 'root',
+    $nginx_package_name = 'nginx'
+    $nginx_owner = 'root'
+    $nginx_group = 'root'
     $nginx_www_dir = '/var/www'
-    $nginx_conf_root_dir = '/etc/nginx',
-    $nginx_conf_incl_dir = '/etc/nginx/conf.d',
-    $nginx_log_dir = '/var/log/nginx',
-    $nginx_service = 'nginx',
-    $nginx_service_account = 'www-data',
+    $nginx_conf_root_dir = '/etc/nginx'
+    $nginx_conf_incl_dir = '/etc/nginx/conf.d'
+    $nginx_log_dir = '/var/log/nginx'
+    $nginx_service = 'nginx'
+    $nginx_service_account = 'www-data'
   }
   'redhat': {
     $nginx_package_name = 'nginx'
