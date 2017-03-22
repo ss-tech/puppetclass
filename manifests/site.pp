@@ -50,6 +50,6 @@ node default {
   
   if $::virtual != 'physical' {
     $vmname = capitalize($::virtual)
-    notify("This VM brought to you by ${vmname}")
+    notify{"This VM brought to you by ${vmname}": }
   }
 }
