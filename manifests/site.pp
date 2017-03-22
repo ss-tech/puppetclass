@@ -42,7 +42,7 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  if $::virtual != 'physical' {
+  if $::is_virtual {
      notify {"This is a VM Virtual Machine":}
   }
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
