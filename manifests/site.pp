@@ -46,6 +46,7 @@ node default {
   #include ::users
   #include ::skeleton
   #include ::memcached
+  include ::nginx
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motdnew":
     path => '/usr/local/bin',
     creates => '/etc/motdnew',
