@@ -43,6 +43,6 @@ node default {
   # Example:
   #   class { 'my_class': }
   include ::users
-  include role::classroom
+  include ::classroom
   include ::skeleton
 }
