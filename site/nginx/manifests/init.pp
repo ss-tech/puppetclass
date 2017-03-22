@@ -59,7 +59,7 @@ case $facts['os']['family'] {
   }
 
 
-  package { 'nginx':
+  package { ${nginx_package_name}:
     ensure => present,
   }
   file { [ $nginx_www_dir, $nginx_conf_root_dir, $nginx_conf_incl_dir ]:
@@ -82,7 +82,7 @@ case $facts['os']['family'] {
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  service { 'nginx':
+  service { ${nginx_service}:
     ensure => running,
     enable => true,
   }
