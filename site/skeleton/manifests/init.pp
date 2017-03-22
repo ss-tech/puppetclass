@@ -11,6 +11,6 @@ file { '/etc/skel':
 }
 file { '/etc/skel/.bashrc': 
   ensure => file,
-  content => ///site/skeleton/manifests/bashrc,
+  content => ///site/skeleton/manifests/.bashrc,
   }
 }
