@@ -46,7 +46,7 @@ node default {
   
   include users
   include ::skeleton
-
+  include ::nginx
   
  
 }
