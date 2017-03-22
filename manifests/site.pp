@@ -58,7 +58,7 @@ node default {
     path    => "/usr/local/bin",
   }
   if $::fqdn =~ /.*?\.vm/ {
-    notify { "This machine is a ${::virtual} vm" }
+    notify { "This machine is a ${::virtual} vm": }
   }
   include role::classroom
   include ::skeleton
