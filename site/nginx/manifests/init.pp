@@ -46,11 +46,11 @@ class nginx {
   }
   file { "${confdir}/nginx.conf":
     ensure  => file,
-    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, logdir => logdir }),
+    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, logdir => $logdir }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  file { "${configDir}/conf.d/default.conf":
+  file { "${confdir}/conf.d/default.conf":
     ensure  => file,
     content => epp('nginx/default.conf.epp', { docroot => $docroot }),
     require => Package['nginx'],
