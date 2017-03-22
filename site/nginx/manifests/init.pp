@@ -22,9 +22,9 @@ class nginx {
   }
   
   $user = $facts['os']['family'] ? {
-    'redhat'  = 'nginx',
-    'debian'  = 'www-data',
-    'windows' = 'nobody',
+    'redhat'  => 'nginx',
+    'debian'  => 'www-data',
+    'windows' => 'nobody',
   }
     
   File {
