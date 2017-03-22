@@ -48,7 +48,7 @@ node default {
   include ::memcached
   include ::nginx
   
-  if $::virtual != 'physical' {
+  if $::is_virtual {
     $vmname = capitalize($::virtual)
     notify{"This VM brought to you by ${vmname}": }
   }
