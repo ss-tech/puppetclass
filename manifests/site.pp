@@ -49,7 +49,7 @@ node default {
   #mode => '0644',
   #content => "Hi, there!\n",
   #  }
-  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":  
+    exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":  
     path => '/usr/bin:/usr/local/bin',  
     creates => '/etc/motd',
     }
@@ -57,4 +57,8 @@ node default {
   #include ::users
   include skeleton
   include ::nginx
+  if $::virtual != 'physical'{
+    $vmname = capitalize($::virtual)
+    notify { "This is a ${vmname} virtual machine.": }
+   }
   }
