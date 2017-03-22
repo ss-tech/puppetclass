@@ -1,15 +1,17 @@
 class skeleton {
   file { '/etc/skel':
-    ensure => directory
-    owner  => 'root'
-    group  => 'root'
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
   }
   file { '/etc/skel/.bashrc':
-    ensure  => file
-    owner   => 'root'
-    group   => 'root'
-    source  => 'puppet:///modules/skeleton/files/.bashrc'
-    content => "This is just an example bashrc file that does nothing"
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    source  => 'puppet:///modules/skeleton/files/.bashrc',
+    content => "This is just an example bashrc file that does nothing",
   }
 }
 
