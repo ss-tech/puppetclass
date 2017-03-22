@@ -3,12 +3,13 @@ class skeleton{
     ensure => 'directory',
     group  => 'root',
     owner  => 'root',
-    type   => 'directory',
+    mode   => '0755',
   }
   file { '/etc/skel/.bashrc':
     ensure  => 'file',
     group   => 'root',
     owner   => 'root',
+    mode    => '0644',
     source => 'puppet:///modules/skeleton/bashrc',
   }
 }
