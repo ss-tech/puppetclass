@@ -5,7 +5,7 @@ package { 'memcached':
 service { 'memcached':
   ensure  => running,
   enable  => true,
-  suscribe => File ['openssh'],
+  suscribe => File ['/etc/sysconfig/memcached'],
 }
 file { '/etc/sysconfig/memcached':
   ensure => file,
