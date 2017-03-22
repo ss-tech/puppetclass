@@ -2,8 +2,8 @@ class nginx {
 
   $nginxserviceaccount = $facts['os']['name'] ? {
     'ubuntu' => 'nginx',
-    'redhat' => 'nginx'
-    'windows' => 'noboxy'
+    'redhat' => 'nginx',
+    'windows' => 'noboxy',
     default  => 'nginx',
   }
 
