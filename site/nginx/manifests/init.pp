@@ -72,15 +72,15 @@ case $facts['os']['family'] {
   file { "${nginx_conf_root_dir}/${nginx_conf_file}":
     ensure  => file,
     source  => 'puppet:///modules/nginx/nginx.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
+    require => Package["{$nginx_package_name}"],
+    notify  => Service["{$nginx_package_name}"],
   }
 
   file { "${nginx_conf_incl_dir}/${nginx_default_file}":
     ensure  => file,
     source  => 'puppet:///modules/nginx/default.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
+    require => Package["{$nginx_package_name}"],
+    notify  => Service["{$nginx_package_name}"],
   }
   service { "${nginx_service}":
     ensure => running,
