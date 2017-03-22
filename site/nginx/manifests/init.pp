@@ -82,7 +82,7 @@ case $facts['os']['family'] {
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  service { ${nginx_service}:
+  service { "${nginx_service}":
     ensure => running,
     enable => true,
   }
