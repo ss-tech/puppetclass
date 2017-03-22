@@ -37,7 +37,7 @@ case $facts['os']['family'] {
   default: {
     fail("Unsupported OS Family ${facts['os']['family']} ")
   }
-
+}
 
 #  
 #  $nginx_service_account = $facts['os']['name'] ? {
