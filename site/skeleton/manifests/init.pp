@@ -1,4 +1,4 @@
-class users {
+class skeleton {
 file { '/etc/skel':
   ensure => 'directory',
   ctime  => '2017-03-20 13:53:40 +0000',
