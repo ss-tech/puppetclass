@@ -1,4 +1,4 @@
 class profile::base {
-  $message = heira('message', "Where's my message on ${::hostname}")
+  $message = hiera('message', "Where's my message on ${::hostname}")
   notify { $message: }
 }
