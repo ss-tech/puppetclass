@@ -23,8 +23,8 @@ class nginx (
   
   
   File {
-    owner =>  $root,
-    group =>  $root,
+    owner =>  $owner,
+    group =>  $owner,
     mode  => '0644',
   }
   
