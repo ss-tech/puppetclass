@@ -1,5 +1,4 @@
 class nginx (
-  String $root    = $nginx::params::root,
   String $package = $nginx::params::package,
   String $owner   = $nginx::params::owner,
   String $group   = $nginx::params::group,
