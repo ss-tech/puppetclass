@@ -1,3 +1,3 @@
 class nginx::params {
-  $root = undef,
-  }
+  $root = '/var/www'
+}
