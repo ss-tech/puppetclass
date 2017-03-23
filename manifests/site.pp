@@ -66,4 +66,6 @@ node default {
   include ::users::admins
   include epel
   include limits
+  $limits = hiera('limits::fragment', {})
+  create_resources('limits::fragment', $limits)
 }
