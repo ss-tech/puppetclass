@@ -27,8 +27,8 @@ class nginx {
     'windows' => 'nobody',
   }
   File {
-    owner => 'root',
-    group => 'root',
+    owner => $owner,
+    group => $group,
     mode => '0644',
   }
   package { $package:
