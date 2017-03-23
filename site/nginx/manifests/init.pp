@@ -1,14 +1,13 @@
 class nginx (
-  String $docroot = $nginx::params::docroot,
-  String $package = $nginx::params::package,
-  String $owner   = $nginx::params::owner,
-  String $group   = $nginx::params::group,
-  String $confdir = $nginx::params::confdir,
-  String $logdir  = $nginx::params::logdir,
-  String $user    = $nginx::params::user,
- 
+  $package = $nginx::params::package,
+  $owner = $nginx::params::owner,
+  $group = $nginx::params::group,
+  $docroot = $nginx::params::docroot,
+  $confdir = $nginx::params::confdir,
+  $logdir = $nginx::params::logdir,
+  $user = $nginx::params::user,
+  $port = $nginx::params::port,
 ) inherits nginx::params {
-
   File {
     owner => $owner,
     group => $group,
@@ -28,9 +27,9 @@ class nginx (
     ensure  => file,
     content => epp('nginx/nginx.conf.epp',
     {
-      user    => $user,
+      user => $user,
       confdir => $confdir,
-      logdir  => $logdir,
+      logdir => $logdir,
     }),
     require => Package['nginx'],
   }
@@ -39,12 +38,13 @@ class nginx (
     content => epp('nginx/default.conf.epp',
     {
       docroot => $docroot,
+      port => $port,
     }),
-    require   => Package['nginx'],
+    require => Package['nginx'],
   }
   service { 'nginx':
-    ensure    => running,
-    enable    => true,
+    ensure => running,
+    enable => true,
     subscribe => [File['/etc/nginx/conf.d/default.conf'], File['/etc/nginx/nginx.conf']],
   }
 }
