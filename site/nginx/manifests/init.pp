@@ -7,13 +7,7 @@ class nginx (
  $logdir = $nginx::params::logdir,
  $user = $nginx::params::user,
  $port = $nginx::params::port,
-){
-
-}
-$port = '80'
-$docroot = $root ? {
-undef => $default_docroot,
-default => $root,
+)inherits nginx::params{
 }
   package { $package:
     ensure => present,
