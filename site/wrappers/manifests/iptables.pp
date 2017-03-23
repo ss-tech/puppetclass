@@ -1,0 +1,2 @@
+class wrapper::firewall {
+}
