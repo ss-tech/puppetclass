@@ -3,11 +3,11 @@
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
 
 
-user             <%= $nginx_service_account -%>;
+user             <%= $service_account -%>;
 
-error_log  <%= $nginx_log_dir %>/error.log;
-#error_log  <%= $nginx_log_dir %>  notice;
-#error_log  <%= $nginx_log_dir %>  info;
+error_log  <%= $log_dir %>/error.log;
+#error_log  <%= $log_dir %>  notice;
+#error_log  <%= $log_dir %>  info;
 
 pid        /var/run/nginx.pid;
 
@@ -18,14 +18,14 @@ events {
 
 
 http {
-    include       <%= $nginx_conf_root_dir %>/mime.types;
+    include       <%= $nconf_root_dir %>/mime.types;
     default_type  application/octet-stream;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  <%= $nginx_log_dir %>/access.log  main;
+    access_log  <%= $log_dir %>/access.log  main;
 
     sendfile        on;
     #tcp_nopush     on;
