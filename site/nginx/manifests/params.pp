@@ -1,41 +1,30 @@
 class nginx::params{
-  $nginx_index_file = 'index.html'
-  $nginx_conf_file = 'nginx.conf'
-  $nginx_default_file = 'default.conf'
+  $index_file = 'index.html'
+  $conf_file = 'nginx.conf'
+  $default_file = 'default.conf'
   
   case $facts['os']['family'] {
-    'debian': {
-      $nginx_package_name = 'nginx'
-      $nginx_owner = 'root'
-      $nginx_group = 'root'
-      $nginx_www_dir = '/var/www'
-      $nginx_conf_root_dir = '/etc/nginx'
-      $nginx_conf_incl_dir = '/etc/nginx/conf.d'
-      $nginx_log_dir = '/var/log/nginx'
-      $nginx_service = 'nginx'
-      $nginx_service_account = 'www-data'
-    }
-    'redhat': {
-      $nginx_package_name = 'nginx'
-      $nginx_owner = 'root'
-      $nginx_group = 'root'
-      $nginx_www_dir = '/var/www'
-      $nginx_conf_root_dir = '/etc/nginx'
-      $nginx_conf_incl_dir = '/etc/nginx/conf.d'
-      $nginx_log_dir = '/var/log/nginx/'
-      $nginx_service = 'nginx'
-      $nginx_service_account = 'nginx'
+    ['debian','redhat]: {
+      $package_name = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $www_dir = '/var/www'
+      $conf_root_dir = '/etc/nginx'
+      $conf_incl_dir = '/etc/nginx/conf.d'
+      $log_dir = '/var/log/nginx'
+      $service = 'nginx'
+      $service_account = 'www-data'
     }
     'windows': {
-      $nginx_package_name = 'nginx-service'
-      $nginx_owner = 'Administrator'
-      $nginx_group = 'Administrators'
-      $nginx_www_dir = 'C:/ProgramData/nginx/html'
-      $nginx_conf_root_dir = 'C:/ProgramData/nginx'
-      $nginx_conf_incl_dir = 'C:/ProgramData/nginx/conf.d'
-      $nginx_log_dir = 'C:/ProgramData/nginx/logs'
-      $nginx_service = 'nginx'
-      $nginx_service_account = 'nobody'
+      $package_name = 'nginx-service'
+      $owner = 'Administrator'
+      $group = 'Administrators'
+      $www_dir = 'C:/ProgramData/nginx/html'
+      $conf_root_dir = 'C:/ProgramData/nginx'
+      $conf_incl_dir = 'C:/ProgramData/nginx/conf.d'
+      $log_dir = 'C:/ProgramData/nginx/logs'
+      $service = 'nginx'
+      $service_account = 'nobody'
     }
     default: {
       fail("Unsupported OS Family ${facts['os']['family']} ")
