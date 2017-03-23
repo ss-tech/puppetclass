@@ -50,7 +50,7 @@ node default {
   include ::role::classroom
   include ::skeleton
   include ::memcached
-  include vault::vault
+  include vault::vault_wrap
   # class { '::nginx':
   #   root  => '/var/www/html',  
   # }  
