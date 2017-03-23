@@ -39,7 +39,7 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 class profile::nginx {
   class { 'nginx':
-    root => '/var/www/html',
+    root => '/var/www',
   }
 }
 
