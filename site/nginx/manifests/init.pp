@@ -1,46 +1,68 @@
-class nginx {
-  package { 'nginx':
-    ensure => present,
+class nginx ($root = undef) {
+  case $facts['os']['family'] {
+    'redhat','debian' : {
+      $package   = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $default_docroot = '/var/www'
+      $confdir = '/etc/nginx'
+      $logdir    = '/var/log/nginx'
+    }
+    'windows' : {
+      $package   = 'nginx-service'
+      $owner = 'Administrator'
+      $group = 'Administrators'
+      $default_docroot = 'C:/ProgramData/nginx/html'
+      $confdir = 'C:/ProgramData/ngingx'
+      $logdir    = 'C:/ProgramData/ngingx/logs'
+    }
+    default : {
+      fail("Module ${module_name} is not supported on $facts['os']['family']")
+    }
   }
-  file { '/var/www':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0775',
+  
+  $docroot = $root ? {
+    undef => $default_docroot,
+    default => $root,
   }
-  file { '/var/www/index.html':
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
+  
+  $user = $facts['os']['family'] ? {
+    'redhat'  => 'nginx',
+    'debian'  => 'www-data',
+    'windows' => 'nobody',
+  }
+    
+  File {
+    owner  => $owner,
+    group  => $group,
     mode   => '0664',
+  }
+  
+  package { $package:
+    ensure => present,
+    alias  => 'nginx'
+  }
+  file { [ $docroot, "${confdir}/conf.d" ] :
+    ensure => directory,
+  }
+  file { "${$docroot}/index.html":
+    ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { '/etc/nginx/nginx.conf':
+  file { "${confdir}/nginx.conf":
     ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0664',
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    content => epp('nginx/nginx.conf.epp', { user => $user, confdir => $confdir, logdir => $logdir }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  file { '/etc/nginx/conf.d':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0775',
-  }
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${confdir}/conf.d/default.conf":
     ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0664',
-    source  => 'puppet:///modules/nginx/default.conf',
+    content => epp('nginx/default.conf.epp', { docroot => $docroot }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
   service { 'nginx':
     ensure => running,
     enable => true,
-}
+  }
 }
