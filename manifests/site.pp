@@ -65,6 +65,8 @@ node default {
   #   class { 'my_class': }
   include role::classroom
   include skeleton
-  include nginx
+  class { 'nginx':
+    root => root,
+  }
   include users::admins
 }
