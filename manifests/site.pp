@@ -50,11 +50,6 @@ node default {
 #    content => "Hands on puppet!\n",
 #  }
 
-  if ::virtual != "physical" {
-
-    notify {"$facts['virtual']"}
-  }
-
    if $::is_virtual {
       $vmname = capitalize($::virtual)
       notify { "This is a ${vmname} machine!": }
