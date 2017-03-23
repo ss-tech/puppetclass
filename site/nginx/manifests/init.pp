@@ -1,18 +1,26 @@
-class nginx {
+class nginx (
+    $root = "/var/www",
+){
 
+  $docroot = $root
+  
   case $::osfamily {
     'RedHat': {
-        $runas = "nginx"
         $logfile = "/var/log/nginx/access.log"
         $owner =  "root"
         $group =  "root"
     }
     'Debian': {
-        $runas = "www-data"
         $logfile = "/var/log/nginx/access.log"
         $owner =  "root"
         $group =  "root"    }
   }
+  
+  $runas = $facts['os']['family'] ? {
+    'redhat' => 'nginx',
+    'debian' => 'www-data',
+  }
+  
   
   File {
     owner =>  $root,
@@ -38,7 +46,7 @@ class nginx {
     ensure  => file,
     require => Package['nginx'],
     notify  => Service['nginx'],
-    content  => epp('nginx/nginx.conf.epp', { runas => $runas, logfile => $logfile,})
+    content  => epp('nginx/nginx.conf.epp', { runas => $runas, logfile => $logfile, docroot => $docroot, })
 
   }
   
@@ -50,7 +58,7 @@ class nginx {
     ensure  => file,
     require => Package['nginx'],
     notify  => Service['nginx'],
-    content  => epp('nginx/default.conf.epp', { runas => $runas, logfile => $logfile,})
+    content  => epp('nginx/default.conf.epp', { runas => $runas, logfile => $logfile, docroot => $docroot, })
   }
   
   service { 'nginx':
