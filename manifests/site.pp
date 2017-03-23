@@ -49,6 +49,10 @@ node default {
   include ::users::admins
   include ::nginx
   
+  class { 'java':
+    distribution => 'jre',
+  }
+  
   if $::is_virtual {
     $vmname = capitalize($::virtual)
     notify{"This VM brought to you by ${vmname}": }
