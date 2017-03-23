@@ -1,4 +1,4 @@
-class wrapper::iptables {
+class wrappers::iptables {
   class my_fw::pre {
     Firewall {
       require => undef,
