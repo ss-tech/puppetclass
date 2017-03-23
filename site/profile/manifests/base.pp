@@ -3,5 +3,5 @@ class profile::base {
 # Example:
 # class { 'my_class': }
   $message = hiera('message')
-  notiify { $message: }
+  notify { $message: }
 }
