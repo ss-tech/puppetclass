@@ -46,7 +46,7 @@ node default {
   #include ::users
   #include ::skeleton
   #include ::memcached
-  include ::nginx
+  #include ::nginx
   if $::virtual != 'physical' {
     $vmname = capitalize($::virtual)
     notify { "This is a ${vmname} machine!": }
