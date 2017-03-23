@@ -1,5 +1,5 @@
 class nginx::params {
-  $root = $$::osfamily ? {
+  $root = $::osfamily ? {
     'windows' => 'C:/whateveritis'
     default => '/var/www',
   }
