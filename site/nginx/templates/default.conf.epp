@@ -1,0 +1,8 @@
+ server {
+    listen 80;
+
+    root <%= $documentRoot =%;
+    index index.html index.htm;
+
+    server_name _;
+}

@@ -18,6 +18,9 @@
 if "${::is_virtual}"{
   $vmtype = capitalize("${::virtual}")
 }
+
+$osf = "$facts['os']['family']"
+
 # Disable filebucket by default for all File resources:
 File { backup => false }
 

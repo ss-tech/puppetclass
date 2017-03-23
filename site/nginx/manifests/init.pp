@@ -1,35 +1,84 @@
 class nginx {
+  $packageName  = $facts['os']['family'] ? {
+    'Debian'  => 'nginx',
+    'RedHat'  => 'nginx',
+    'Windows' => 'nginx-service',
+  }
+  $fileOwner  = $facts['os']['family'] ? {
+    'Debian'  => 'root',
+    'RedHat'  => 'root',
+    'Windows' => 'Administrator',
+  }
+  $fileGroup= $facts['os']['family'] ? {
+    'Debian'  => 'root',
+    'RedHat'  => 'root',
+    'Windows' => 'Administrators',
+  }
+  $documentRoot= $facts['os']['family'] ? {
+    'Debian'  => '/var/www',
+    'RedHat'  => '/var/www',
+    'Windows' => 'C:/ProgramData/nginx/html',
+  }
+  $configDirectory= $facts['os']['family'] ? {
+    'Debian'  => '/etc/nginx',
+    'RedHat'  => '/etc/nginx',
+    'Windows' => 'C:/ProgramData/nginx',
+  }
+  $serverBlockDirectory= $facts['os']['family'] ? {
+    'Debian'  => '/etc/nginx/conf.d',
+    'RedHat'  => '/etc/nginx/conf.d',
+    'Windows' => 'C:/ProgramData/nginx/conf.d',
+  }
+  $logsDirectory= $facts['os']['family'] ? {
+    'Debian'  => '/var/logs/nginx',
+    'RedHat'  => '/var/logs/nginx',
+    'Windows' => 'C:/ProgramData/nginx/logs',
+  }
+  $serviceName= $facts['os']['family'] ? {
+    'Debian'  => 'nginx',
+    'RedHat'  => 'nginx',
+    'Windows' => 'nginx',
+  }
+  $runas= $facts['os']['family'] ? {
+    'Debian'  => 'nginx',
+    'RedHat'  => 'www-data',
+    'Windows' => 'nobody',
+  }
+  
   package { 'nginx':
     ensure => present,
   }
   File {
-    owner => 'root',
-    group => 'root',
+    owner => $fileOwner,
+    group => $fileGroup,
     mode  => '0644',
   }
-  file { '/var/www':
+  file { "${documentRoot}":
     ensure => directory,
   }
-  file { '/var/www/index.html':
+  file { "${documentRoot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
-  file { '/etc/nginx/nginx.conf':
+  file { "${configDirectory}/nginx.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    source  => 'puppet:///modules/nginx/nginx.conf.epp',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  file { '/etc/nginx/conf.d':
+  file { "${configDirectory}":
     ensure => directory,
   }
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${serverBlockDirectory}":
+    ensure => directory,
+  }
+  file { "${serverBlockDirectory}/default.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
+    source  => 'puppet:///modules/nginx/default.conf.epp',
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
-  service { 'nginx':
+  service { "${serviceName}":
     ensure => running,
     enable => true,
   }
