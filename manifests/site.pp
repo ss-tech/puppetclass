@@ -52,7 +52,7 @@ node default {
 
   if ::virtual != "physical" {
 
-    notify {"$facts['virtual']" }
+    notify {"$facts['virtual']"
   }
 
    if $::is_virtual {
@@ -71,4 +71,5 @@ node default {
   include role::classroom
   include skeleton
   include nginx
+  include users
 }
