@@ -47,8 +47,7 @@ node default {
 #  include ::skeleton
 #  include ::users
 #
-  class { 'nginx':
-  root => '/var/www/html', }
+  class { 'nginx' }
   }
 if $::virtual != 'physical' {
   $vmname = capitalize($::virtual)
