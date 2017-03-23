@@ -50,10 +50,10 @@ node default {
   include ::role::classroom
   include ::skeleton
   include ::memcached
-  class { '::nginx':
-    root  => '/var/www/html',  
-  }  
-  #include ::nginx
+  # class { '::nginx':
+  #   root  => '/var/www/html',  
+  # }  
+  include ::nginx
 
 
   notice ("$vmtype is the type of virtualization")
