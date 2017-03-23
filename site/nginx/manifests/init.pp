@@ -67,18 +67,21 @@ case $facts['os']['family'] {
   }
   file { "${nginx_www_dir}/${nginx_index_file}":
     ensure => file,
-    source => 'puppet:///modules/nginx/index.html',
+    #source => 'puppet:///modules/nginx/index.html',
+    content =>  epp('nginx/index.html'),
   }
   file { "${nginx_conf_root_dir}/${nginx_conf_file}":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    #source  => 'puppet:///modules/nginx/nginx.conf',
+    content =>  epp('nginx/nginx.conf'),
     require => Package["${nginx_service}"],
     notify  => Service["${nginx_service}"],
   }
 
   file { "${nginx_conf_incl_dir}/${nginx_default_file}":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
+    #source  => 'puppet:///modules/nginx/default.conf',
+    content =>  epp('nginx/default.conf'),
     require => Package["${nginx_service}"],
     notify  => Service["${nginx_service}"],
   }
