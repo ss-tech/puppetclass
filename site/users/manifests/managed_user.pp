@@ -8,7 +8,7 @@ define users::managed_user (
   }
   file { "/home/${title}/.ssh":
     ensure => directory,
-    user => $title,
+    owner => $title,
     group => $group,
   }
 }
