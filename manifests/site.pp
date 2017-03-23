@@ -49,7 +49,7 @@ node default {
   include ::users::admins
   include ::nginx
   
-  include '::mysql::server'
+  include '::profile::mysql'
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
