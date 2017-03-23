@@ -1,10 +1,7 @@
 class nginx (
   $root = undef,
 ) {
-  $nginx_www_dir = $root ? {
-    undef => $default_docroot,
-    default => $root,
-  }
+
 
 #  
 #  $nginx_service_account = $facts['os']['name'] ? {
