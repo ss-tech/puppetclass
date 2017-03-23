@@ -6,7 +6,7 @@ define users::managed_user (
     home => "/home/${title}",
     managehome => true,
   }
-  file { "/home/${title}/.ssh"
+  file { "/home/${title}/.ssh":
     ensure => directory,
     user => $title,
     group => $group,
