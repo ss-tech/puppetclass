@@ -41,6 +41,11 @@ case $facts['os']['family'] {
   }
 }
 
+  $docroot = $root ? {
+    undef => $default_docroot,
+    default => $root,
+  }
+
 #  
 #  $nginx_service_account = $facts['os']['name'] ? {
 #    'ubuntu' => 'nginx',
