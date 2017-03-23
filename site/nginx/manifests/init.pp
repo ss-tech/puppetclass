@@ -1,43 +1,13 @@
-class nginx {
-  case $facts['os']['family'] {
-    'redhat','debian' : {
-      $package = 'nginx'
-      $owner = 'root'
-      $group = 'root'
-      #$docroot = '/var/www'
-      $confdir = '/etc/nginx'
-      $logdir = '/var/log/nginx'
-      
-      # this will be used if we don't pass in a value
-      $default_docroot = '/var/www'
-    }
-    'windows' : {
-      $package = 'nginx-service'
-      $owner = 'Administrator'
-      $group = 'Administrators'
-      #$docroot = 'C:/ProgramData/nginx/html'
-      $confdir = 'C:/ProgramData/nginx'
-      $logdir = 'C:/ProgramData/nginx/logs'
-      
-      # this will be used if we don't pass in a value
-      $default_docroot = '/var/www'
-    }
-    default : {
-      fail("Module ${module_name} is not supported on ${facts['os']['family']}")
-    }
-  }
-  
-  # if $root isn't set, then fall back to the platform default
-  $docroot = $root ? {
-  undef => $default_docroot,
-  default => $root,
-  }
-
-  $user = $facts['os']['family'] ? {
-    'redhat' => 'nginx',
-    'debian' => 'www-data',
-    'windows' => 'nobody',
-  }
+class nginx (
+  $package = $nginx::params::package,
+  $owner = $nginx::params::owner,
+  $group = $nginx::params::group,
+  $docroot = $nginx::params::docroot,
+  $confdir = $nginx::params::confdir,
+  $logdir = $nginx::params::logdir,
+  $user = $nginx::params::user,
+  $port = $nginx::params::port,
+) inherits nginx::params {
   File {
     owner => $owner,
     group => $group,
@@ -68,6 +38,7 @@ class nginx {
     content => epp('nginx/default.conf.epp',
     {
       docroot => $docroot,
+      port => $port,
     }),
     require => Package['nginx'],
   }
