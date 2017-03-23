@@ -6,4 +6,4 @@ mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo'
 
 # Installs cisco modules from puppet forge
-mod 'puppetlabs-ciscopuppet'
+mod 'puppetlabs/ciscopuppet'
