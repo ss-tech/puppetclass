@@ -17,10 +17,10 @@ class nginx (
     ensure => present,
     alias  => 'nginx'
   }
-  file { [ $docroot, "${confdir}/conf.d" ] :
+  file { [ $root, "${confdir}/conf.d" ] :
     ensure => directory,
   }
-  file { "${$docroot}/index.html":
+  file { "${$root}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
@@ -32,7 +32,7 @@ class nginx (
   }
   file { "${confdir}/conf.d/default.conf":
     ensure  => file,
-    content => epp('nginx/default.conf.epp', { docroot => $docroot }),
+    content => epp('nginx/default.conf.epp', { docroot => $root }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
