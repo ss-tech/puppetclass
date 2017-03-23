@@ -13,7 +13,7 @@ class nginx::params{
       $conf_incl_dir = '/etc/nginx/conf.d'
       $log_dir = '/var/log/nginx'
       $service = 'nginx'
-      if $facts['os']['family'] = 'debian' {
+      if $facts['os']['family'] == 'debian' {
         $service_account = 'debian-user'
       } else {
         $service_account = 'nginx'
