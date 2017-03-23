@@ -1,28 +1,39 @@
-class nginx {
+class nginx (
+  $root = undef,
+){
+  
 case $facts['os']['name'] {
   'redhat','debian', {
       $package = 'nginx'
       $owner = 'root'
       $group = 'root'
-      $docroot = '/var/www'
+#      $docroot = '/var/www'
       $confdir = '/etc/nginx'
       $logdir = '/var/log/nginx'
+      $default_docroot ='/var/www'
       }
   'windows' : {
     $package = 'nginx-service'
     $owner = 'Administrator'
     $group = 'Administrators'
-    $docroot = 'C:/ProgramData/nginx/html'
+#    $docroot = 'C:/ProgramData/nginx/html'
     $confdir = 'C:/ProgramData/nginx'
     $logdir = 'C:/ProgramData/nginx/logs'
+    $default_docroot = 'C:/ProgramData/nginx/html'
     }
   default : {
     fail("Module ${module_name} is not supported on ${facts['os']['family']}") }
     }
+}
 $user = $facts['os']['family'] ? {
   'redhat' => 'nginx',
   'debian' => 'www-data',
   'windows' => 'nobody',
+  }
+$port = '80'
+$docroot = $root ? {
+undef => $default_docroot,
+default => $root,
 }
   package { $package:
     ensure => present,
@@ -58,6 +69,7 @@ $user = $facts['os']['family'] ? {
     ensure  => file,
     content => epp('nginx/default.conf.epp',
       {
+       port => $port,
        docroot => $docroot,
       }),
     notify  => Service['nginx'],
