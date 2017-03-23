@@ -66,5 +66,4 @@ node default {
   include ::users::admins
   include epel
   include limits
-  include redis
 }
