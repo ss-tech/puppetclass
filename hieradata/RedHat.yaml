@@ -1,2 +1,2 @@
 ---
-root: "/var/www/training"
+nginx::root: "/var/www/training"
