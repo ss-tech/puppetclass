@@ -1,9 +1,9 @@
 class users::admins {
- users::managed_users{'allen':}
- users::managed_users{['lolcat','unicorn']:
+  users::managed_user { 'drew': }
+  users::managed_user { ['enrique', 'padmashree']:
     group => 'staff',
-    }
-  group {'staff:
-   ensure => present,
-   }
- }
+  }
+  group { 'staff':
+    ensure => present,
+  }
+}
