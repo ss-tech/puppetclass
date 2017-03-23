@@ -1,4 +1,4 @@
 class profile::base {
-  $message => hiera('message')
+  $message = hiera('message')
   notify { " This is a node specific ${message}": }
 }
