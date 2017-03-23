@@ -1,10 +1,10 @@
 class nginx (
-      $package = $nginx::params::package
-      $owner   = $nginx::params::owner
-      $group   = $nginx::params::group
-      $root    = $nginx::params::root
-      $confdir = $nginx::params::confdir
-      $logdir  = $nginx::params::logdir
+      $package = $nginx::params::package,
+      $owner   = $nginx::params::owner,
+      $group   = $nginx::params::group,
+      $root    = $nginx::params::root,
+      $confdir = $nginx::params::confdir,
+      $logdir  = $nginx::params::logdir,
 ) inherits apache::params {
   
   File {
