@@ -1,5 +1,5 @@
 class nginx (
-  String $root,
+  $root = undef,
 ) {
 #Defaults and Variables
   case $facts['os']['family'] {
