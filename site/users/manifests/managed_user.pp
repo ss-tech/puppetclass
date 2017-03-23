@@ -4,7 +4,7 @@ define users::managed_user (
 {
   user { $title:
     ensure      => present,
-    managedhome => true,
+    managehome => true,
     home        => "/home/${title}",  
-    group       => "staff",
+    gid       => "staff",
 }
