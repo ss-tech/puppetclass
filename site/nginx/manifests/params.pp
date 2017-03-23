@@ -4,7 +4,7 @@ class nginx::params{
   $default_file = 'default.conf'
   
   case $facts['os']['family'] {
-    ['debian','redhat]: {
+    'debian','redhat: {
       $package_name = 'nginx'
       $owner = 'root'
       $group = 'root'
@@ -13,7 +13,11 @@ class nginx::params{
       $conf_incl_dir = '/etc/nginx/conf.d'
       $log_dir = '/var/log/nginx'
       $service = 'nginx'
-      $service_account = 'www-data'
+      if $facts['os']['family'] = 'debian' { 
+        $service_account = 'www-nginx'
+      } else {
+        $service_account = 'nginx'
+      }
     }
     'windows': {
       $package_name = 'nginx-service'
