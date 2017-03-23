@@ -1,0 +1,2 @@
+---
+nginx::nginx_docroot: /var/www-windows
