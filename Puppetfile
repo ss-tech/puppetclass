@@ -6,3 +6,4 @@ mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo'
 
 mod 'maestrodev-maven', '1.4.0'
+mod 'puppetlabs-java', '1.6.0'
