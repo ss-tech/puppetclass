@@ -44,16 +44,4 @@ node default {
   #   class { 'my_class': }
   include role::classroom
   include role::blog
-
-  # include ::users
-  include ::skeleton
-  include ::memcached
-  include ::users::admins
-  include ::nginx
-  
-  
-  if $::is_virtual {
-    $vmname = capitalize($::virtual)
-    notify{"This VM brought to you by ${vmname}": }
-  }
 }
