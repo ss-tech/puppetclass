@@ -41,7 +41,7 @@ case $facts['os']['family'] {
   }
 }
 
-  $docroot = $root ? {
+  $nginx_www_dir = $root ? {
     undef => $default_docroot,
     default => $root,
   }
