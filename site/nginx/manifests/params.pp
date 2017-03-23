@@ -20,7 +20,7 @@ class nginx::params {
     }
   }
   
-  $root = $$::osfamily ? {
+  $user = $::osfamily ? {
     'windows' => 'C:/whateveritis'
     default => '/var/www',
   }
