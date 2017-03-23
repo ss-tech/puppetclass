@@ -1,7 +1,14 @@
 class nginx (
-  String $root,
+  $nginx_packagename = $nginx::params::nginx_packagename
+  $nginx_owner = $nginx::params::nginx_owner
+  $nginx_group = $nginx::params::nginx_group
+  $nginx_rootdir = $nginx::params::nginx_rootdir
+  $nginx_confdir = $nginx::params::nginx_confdir
+  $nginx_logdir = $nginx::params::nginx_logdir
+  $nginx_servicename = $nginx::params::nginx_servicename
+  $nginx_user = $nginx::params::nginx_user 
 ) {
-
+  $docroot = $nginx_rootdir
   File {
     owner => "${nginx_owner}",
     group => "${nginx_group}",
