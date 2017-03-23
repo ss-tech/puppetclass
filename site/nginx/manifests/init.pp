@@ -19,7 +19,7 @@ case $facts['os']['family'] {
     $nginx_www_dir = '/var/www/'
     $nginx_conf_root_dir = '/etc/nginx'
     $nginx_conf_incl_dir = '/etc/nginx/conf.d'
-    $nginx_log_dir = '/var/log/nginx'
+    $nginx_log_dir = '/var/log/nginx/'
     $nginx_service = 'nginx'
     $nginx_service_account = 'nginx'
   }
@@ -73,7 +73,7 @@ case $facts['os']['family'] {
   file { "${nginx_conf_root_dir}/${nginx_conf_file}":
     ensure  => file,
     #source  => 'puppet:///modules/nginx/nginx.conf',
-    content =>  epp('nginx/nginx.conf',
+    content =>  epp('nginx/nginx.conf.epp',
     {
     nginx_package_name => $nginx_package_name,
     nginx_owner => $nginx_owner,
@@ -92,7 +92,7 @@ case $facts['os']['family'] {
   file { "${nginx_conf_incl_dir}/${nginx_default_file}":
     ensure  => file,
     #source  => 'puppet:///modules/nginx/default.conf',
-    content =>  epp('nginx/default.conf',
+    content =>  epp('nginx/default.conf.epp',
     {
     nginx_package_name => $nginx_package_name,
     nginx_owner => $nginx_owner,
