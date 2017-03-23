@@ -62,7 +62,13 @@ class nginx {
   }
   file { "${configDirectory}/nginx.conf":
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf.epp',
+    content  => epp('puppet:///modules/nginx/nginx.conf.epp',
+    {
+      runas                => $runas,
+      logsDirectory        => $logsDirectory,
+      configDirectory      => $configDirectory,
+      serverBlockDirectory => $serverBlockDirectory,
+    }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
@@ -73,8 +79,10 @@ class nginx {
     ensure => directory,
   }
   file { "${serverBlockDirectory}/default.conf":
-    ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf.epp',
+    ensure         => file,
+    content        => epp('puppet:///modules/nginx/default.conf.epp',{
+      documentRoot => $documentRoot,
+    }),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
