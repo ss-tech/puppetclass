@@ -1,2 +1,3 @@
 ---
 message: "This message came from a node-specific hiera datasource"
+nginx::docroot: "/var/www/training1"
