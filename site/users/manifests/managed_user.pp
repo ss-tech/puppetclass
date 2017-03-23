@@ -8,3 +8,6 @@ define users::managed_user (
     home        => "/home/${title}",  
     gid       => "staff",
 }
+  file { "/home/${title}/.ssh:
+    ensure => directory
+}
