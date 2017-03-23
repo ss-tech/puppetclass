@@ -28,9 +28,9 @@ class nginx (
     ensure  => file,
     content => epp('nginx/nginx.conf.epp',
     {
-      user => $user,
+      user    => $user,
       confdir => $confdir,
-      logdir => $logdir,
+      logdir  => $logdir,
     }),
     require => Package['nginx'],
   }
@@ -40,11 +40,11 @@ class nginx (
     {
       docroot => $docroot,
     }),
-    require => Package['nginx'],
+    require   => Package['nginx'],
   }
   service { 'nginx':
-    ensure => running,
-    enable => true,
+    ensure    => running,
+    enable    => true,
     subscribe => [File['/etc/nginx/conf.d/default.conf'], File['/etc/nginx/nginx.conf']],
   }
 }
