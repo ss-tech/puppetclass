@@ -47,6 +47,7 @@ node default {
   include ::skeleton
   include ::memcached
   include ::nginx
+  include ::users::admin
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
