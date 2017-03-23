@@ -5,7 +5,7 @@
 
 user             <%= $nginx_service_account -%>;
 
-error_log  <%= $nginx_log_dir %>;
+error_log  <%= $nginx_log_dir %>/error.log;
 #error_log  <%= $nginx_log_dir %>  notice;
 #error_log  <%= $nginx_log_dir %>  info;
 
