@@ -1,5 +1,5 @@
 class nginx (
-  String $root = "/var/www",
+  String $root = undef,
 ) {
 #Defaults and Variables
   case $facts['os']['family'] {
@@ -49,15 +49,19 @@ class nginx (
     group => "${nginx_group}",
     mode  => '0644',
   }
+  $docroot = $root ? {
+    undef => $nginx_rootdir,
+    default => $root,
+  }
 #Do the work  
   package { 'nginx':
     ensure => present,
     name => "${nginx_packagename}",
   }
-  file { [ "${root}/", "${nginx_confdir}/conf.d" ]:
+  file { [ "${docroot}/", "${nginx_confdir}/conf.d" ]:
     ensure => directory,
   }
-  file { "${root}/index.html":
+  file { "${docroot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
