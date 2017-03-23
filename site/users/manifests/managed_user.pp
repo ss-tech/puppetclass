@@ -8,6 +8,10 @@ define users::managed_user (
 ) {
   user { $title:
   ensure  => present,
-  home    => "/home/${user}",
+  home    => "/home/${title}",
   }
+  file { "/home/${title}":
+    ensure  => directory,
+    group   => ${title},
+    owner   => ${user},
 }
