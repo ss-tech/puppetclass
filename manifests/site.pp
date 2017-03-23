@@ -48,6 +48,9 @@ node default {
  #   group   => 'root',
  #   mode    => '0644',  
  #   content => "Hey, Puppet training is fun!\n",}
+  class {'nginx':
+    root => '/var/www/html',
+   }
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     path => '/usr/local/bin',
     creates => '/etc/motd',
