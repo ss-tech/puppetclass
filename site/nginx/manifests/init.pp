@@ -28,6 +28,12 @@ $root = undef,
       fail("Module ${module_name} is not supported on ${facts['os']['family']}")
     }
   }
+  
+  # if $root isn't set, then fall back to the platform default
+  $docroot = $root ? {
+  undef => $default_docroot,
+  default => $root,
+  }
 
   $user = $facts['os']['family'] ? {
     'redhat' => 'nginx',
