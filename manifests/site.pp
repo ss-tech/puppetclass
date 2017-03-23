@@ -49,12 +49,7 @@ node default {
   include ::users::admins
   include ::nginx
   
-  package { 'xorg-x11-fonts-Type1': }
-  
-  class { 'java':
-    distribution => 'jre',
-    require => Package['xorg-x11-fonts-Type1'],
-  }
+  include '::mysql::server'
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
