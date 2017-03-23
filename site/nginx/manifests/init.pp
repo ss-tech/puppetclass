@@ -1,5 +1,4 @@
 class nginx ($root = undef) {
-  $docroot = $root
   case $facts['os']['family'] {
     'redhat','debian' : {
       $package   = 'nginx'
