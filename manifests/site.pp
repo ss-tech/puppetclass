@@ -38,7 +38,7 @@ ini_setting { 'random ordering':
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-#node default {
+node default {
 #  exec {"cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
 #   path    => '/usr/local/bin/',
 #   creates => '/etc/motd',
@@ -47,7 +47,9 @@ ini_setting { 'random ordering':
 #  include ::skeleton
 #  include ::users
 #
-#}
+  class { 'nginx':
+  root => '/var/www/html', }
+  }
 if $::virtual != 'physical' {
   $vmname = capitalize($::virtual)
   notify { "This is a ${vmname} machine": }
