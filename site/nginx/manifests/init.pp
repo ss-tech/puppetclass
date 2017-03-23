@@ -1,20 +1,6 @@
 class nginx (
   $root = undef,
-) {
-
-
-#  
-#  $nginx_service_account = $facts['os']['name'] ? {
-#    'ubuntu' => 'nginx',
-#    'redhat' => 'nginx',
-#    'windows' => 'noboxy',
-#    default  => 'nginx',
-#  }
-
-
-  $nginx_index_file = 'index.html'
-  $nginx_conf_file = 'nginx.conf'
-  $nginx_default_file = 'default.conf'
+) inherits nginx::params  {
 
   File {
     owner => 'root',
