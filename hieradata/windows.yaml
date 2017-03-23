@@ -1,2 +1,2 @@
 ---
-nginx::nginx_docroot: /var/www-windows
+nginx::nginx_rootdir: /var/www-windows
