@@ -10,7 +10,8 @@ class nginx (
   $conf_incl_dir = $nginx::params::conf_incl_dir,
   $log_dir = $nginx::params::log_dir,
   $service = $nginx::params::service,
-  $service_account = $nginx::params::service_account
+  $service_account = $nginx::params::service_account,
+  $port = $nginx::params::port
 ) inherits nginx::params  {
 
   File {
@@ -43,7 +44,8 @@ class nginx (
       conf_incl_dir => $conf_incl_dir,
       log_dir => $nlog_dir,
       service => $service,
-      service_account => $service_account
+      service_account => $service_account,
+      port => $port
     }),
     require => Package["${service}"],
     notify  => Service["${service}"],
@@ -62,7 +64,8 @@ class nginx (
       conf_incl_dir => $conf_incl_dir,
       log_dir => $nlog_dir,
       service => $service,
-      service_account => $service_account
+      service_account => $service_account,
+      port => $port
     }),
     require => Package["${service}"],
     notify  => Service["${service}"],
