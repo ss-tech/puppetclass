@@ -39,7 +39,6 @@ node default {
   }
   include role::classroom
   include ::skeleton
-  include ::nginx
   
   if $facts['is_virtual'] {
     $vmname = capitalize($::virtual)
