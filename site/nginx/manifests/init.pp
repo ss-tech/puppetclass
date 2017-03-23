@@ -43,3 +43,4 @@ class nginx {
     ensure => running,
     enable => true,
 }
+}
