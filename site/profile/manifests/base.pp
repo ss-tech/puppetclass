@@ -1,3 +1,4 @@
 class profile::base {
-  notify { "Hello, my name is ${::hostname}": }
+  $message = heira('message', "Where's my message on ${::hostname}")
+  notify { $message: }
 }
