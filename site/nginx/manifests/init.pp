@@ -1,6 +1,6 @@
 class nginx (
-  $root = undef,
-) {
+  String $root = $nginx::params::root,
+) inherits nginx::params {
   case $facts['os']['family'] {
     'redhat','debian' : {
       $package = 'nginx'
@@ -27,11 +27,6 @@ class nginx (
     'redhat' => 'nginx',
     'debian' => 'www-data',
     'windows' => 'nobody',
-  }
-  
-  $docroot = $root ? {
-    undef => $default_docroot,
-    default => $root,
   }
   
   File {
