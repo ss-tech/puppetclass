@@ -1,37 +1,12 @@
-class nginx ($root = undef) {
-  case $facts['os']['family'] {
-    'redhat','debian' : {
-      $package   = 'nginx'
-      $owner = 'root'
-      $group = 'root'
-      $default_docroot = '/var/www'
-      $confdir = '/etc/nginx'
-      $logdir    = '/var/log/nginx'
-    }
-    'windows' : {
-      $package   = 'nginx-service'
-      $owner = 'Administrator'
-      $group = 'Administrators'
-      $default_docroot = 'C:/ProgramData/nginx/html'
-      $confdir = 'C:/ProgramData/ngingx'
-      $logdir    = 'C:/ProgramData/ngingx/logs'
-    }
-    default : {
-      fail("Module ${module_name} is not supported on $facts['os']['family']")
-    }
-  }
+class nginx (
+      $package = $nginx::params::package
+      $owner   = $nginx::params::owner
+      $group   = $nginx::params::group
+      $root    = $nginx::params::root
+      $confdir = $nginx::params::confdir
+      $logdir  = $nginx::params::logdir
+) inherits apache::params {
   
-  $docroot = $root ? {
-    undef => $default_docroot,
-    default => $root,
-  }
-  
-  $user = $facts['os']['family'] ? {
-    'redhat'  => 'nginx',
-    'debian'  => 'www-data',
-    'windows' => 'nobody',
-  }
-    
   File {
     owner  => $owner,
     group  => $group,
