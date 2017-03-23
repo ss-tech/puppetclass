@@ -52,4 +52,5 @@ node default {
     $vmname = capitalize($::virtual)
     notify { "This is a ${vmname} machine!": }
   }
+  include ::profile::epel
 }
