@@ -6,7 +6,7 @@ class nginx (
    $package = 'nginx'
    $owner = 'root'
    $group = 'root'
-   $docroot = '/var/www'
+   $default_docroot = '/var/www'
    $confdir = '/etc/nginx'
    $logdir = '/var/log/nginx'
  }
@@ -14,7 +14,7 @@ class nginx (
    $package = 'nginx-service'
    $owner = 'Administrator'
    $group = 'Administrators'
-   $docroot = 'C:/ProgramData/nginx/html'
+   $default_docroot = 'C:/ProgramData/nginx/html'
    $confdir = 'C:/ProgramData/nginx'
    $logdir = 'C:/ProgramData/nginx/logs'
  }
@@ -28,6 +28,11 @@ $user = $facts['os']['family'] ? {
  'redhat' => 'nginx',
  'debian' => 'www-data',
  'windows' => 'nobody',
+}
+
+$docroot = $root ? {
+  undef => $default_docroot,
+  default => $root,
 }
 
 File {
