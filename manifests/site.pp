@@ -48,7 +48,7 @@ node default {
   #include ::memcached
   #include ::nginx
   include users::admins
-  include my_fw::pre
+  include wrappers::iptables
   if $::virtual != 'physical' {
     $vmname = capitalize($::virtual)
     notify { "This is a ${vmname} machine!": }
