@@ -53,8 +53,4 @@ node default {
   #include ::users
   include ::skeleton
   include ::memcached
-  
-  class { 'nginx':
-    root => '/var/www/html',
-  }
 }
