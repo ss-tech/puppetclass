@@ -49,8 +49,8 @@ node default {
  #   mode    => '0644',  
  #   content => "Hey, Puppet training is fun!\n",}
   include ::nginx
- wrappers::limits
- wrappers::epel
+  include wrappers::limits
+  include wrappers::epel
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     path => '/usr/local/bin',
     creates => '/etc/motd',
