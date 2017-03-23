@@ -21,7 +21,7 @@ case $facts['os']['name'] {
     $default_docroot = 'C:/ProgramData/nginx/html'
     }
   default : {
-    fail("Module ${module_name} is not supported on ${facts['os']['family']}") }
+    fail("Module ${module_name} is not supported on ${facts['os']['family']}")
     }
 }
 $user = $facts['os']['family'] ? {
