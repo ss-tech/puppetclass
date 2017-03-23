@@ -1,4 +1,6 @@
-class nginx {
+class nginx (
+  String $root = "/var/www",
+) {
 #Defaults and Variables
   case $facts['os']['family'] {
     'RedHat': {
@@ -52,10 +54,10 @@ class nginx {
     ensure => present,
     name => "${nginx_packagename}",
   }
-  file { [ "${nginx_rootdir}/", "${nginx_confdir}/conf.d" ]:
+  file { [ "${root}/", "${nginx_confdir}/conf.d" ]:
     ensure => directory,
   }
-  file { "${nginx_rootdir}/index.html":
+  file { "${root}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
