@@ -1,16 +1,16 @@
 class nginx (
-  $nginx_index_file = $nginx::params::nginx_index_file,
-  $nginx_conf_file = $nginx::params::nginx_conf_file,
-  $nginx_default_file = $nginx::params::nginx_default_file,
-  $nginx_package_name = $nginx::params::nginx_package_name,
-  $nginx_owner = $nginx::params::nginx_owner,
-  $nginx_group = $nginx::params::nginx_group,
-  $nginx_www_dir = $nginx::params::nginx_www_dir,
-  $nginx_conf_root_dir = $nginx::params::nginx_conf_root_dir,
-  $nginx_conf_incl_dir = $nginx::params::nginx_conf_incl_dir,
-  $nginx_log_dir = $nginx::params::nginx_log_dir,
-  $nginx_service = $nginx::params::nginx_service,
-  $nginx_service_account = $nginx::params::nginx_service_account
+  $index_file = $nginx::params::index_file,
+  $conf_file = $nginx::params::conf_file,
+  $default_file = $nginx::params::default_file,
+  $package_name = $nginx::params::package_name,
+  $owner = $nginx::params::owner,
+  $group = $nginx::params::group,
+  $www_dir = $nginx::params::www_dir,
+  $conf_root_dir = $nginx::params::conf_root_dir,
+  $conf_incl_dir = $nginx::params::conf_incl_dir,
+  $log_dir = $nginx::params::log_dir,
+  $service = $nginx::params::service,
+  $service_account = $nginx::params::service_account
 ) inherits nginx::params  {
 
   File {
@@ -18,7 +18,6 @@ class nginx (
     group => 'root',
     mode => '0664'
   }
-
 
   package { "${nginx_package_name}":
     ensure => latest,
@@ -36,39 +35,39 @@ class nginx (
     #source  => 'puppet:///modules/nginx/nginx.conf',
     content =>  epp('nginx/nginx.conf.epp',
     {
-    nginx_package_name => $nginx_package_name,
-    nginx_owner => $nginx_owner,
-    nginx_group => $nginx_group,
-    nginx_www_dir => $nginx_www_dir,
-    nginx_conf_root_dir => $nginx_conf_root_dir,
-    nginx_conf_incl_dir => $nginx_conf_incl_dir,
-    nginx_log_dir => $nginx_log_dir,
-    nginx_service => $nginx_service,
-    nginx_service_account => $nginx_service_account
+      package_name => $package_name,
+      owner => $owner,
+      group => $group,
+      www_dir => $www_dir,
+      conf_root_dir => $conf_root_dir,
+      conf_incl_dir => $conf_incl_dir,
+      log_dir => $nlog_dir,
+      service => $service,
+      service_account => $service_account
     }),
-    require => Package["${nginx_service}"],
-    notify  => Service["${nginx_service}"],
+    require => Package["${service}"],
+    notify  => Service["${service}"],
   }
 
-  file { "${nginx_conf_incl_dir}/${nginx_default_file}":
+  file { "${conf_incl_dir}/${default_file}":
     ensure  => file,
     #source  => 'puppet:///modules/nginx/default.conf',
     content =>  epp('nginx/default.conf.epp',
     {
-    nginx_package_name => $nginx_package_name,
-    nginx_owner => $nginx_owner,
-    nginx_group => $nginx_group,
-    nginx_www_dir => $nginx_www_dir,
-    nginx_conf_root_dir => $nginx_conf_root_dir,
-    nginx_conf_incl_dir => $nginx_conf_incl_dir,
-    nginx_log_dir => $nginx_log_dir,
-    nginx_service => $nginx_service,
-    nginx_service_account => $nginx_service_account
+      package_name => $package_name,
+      owner => $owner,
+      group => $group,
+      www_dir => $www_dir,
+      conf_root_dir => $conf_root_dir,
+      conf_incl_dir => $conf_incl_dir,
+      log_dir => $nlog_dir,
+      service => $service,
+      service_account => $service_account
     }),
-    require => Package["${nginx_service}"],
-    notify  => Service["${nginx_service}"],
+    require => Package["${service}"],
+    notify  => Service["${service}"],
   }
-  service { "${nginx_service}":
+  service { "${service}":
     ensure => running,
     enable => true,
   }
