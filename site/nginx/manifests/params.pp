@@ -2,6 +2,7 @@ class nginx::params{
   $index_file = 'index.html'
   $conf_file = 'nginx.conf'
   $default_file = 'default.conf'
+  $port = '80'
   
   case $facts['os']['family'] {
     'debian','redhat': {
@@ -34,4 +35,5 @@ class nginx::params{
       fail("Unsupported OS Family ${facts['os']['family']} ")
     }
   }
+  
 }
