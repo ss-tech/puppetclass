@@ -1,10 +1,11 @@
-class nginx ($root = '/var/www') {
+class nginx ($root = undef) {
   $docroot = $root
   case $facts['os']['family'] {
     'redhat','debian' : {
       $package   = 'nginx'
       $owner = 'root'
       $group = 'root'
+      $default_docroot = '/var/www'
       $confdir = '/etc/nginx'
       $logdir    = '/var/log/nginx'
     }
@@ -12,12 +13,18 @@ class nginx ($root = '/var/www') {
       $package   = 'nginx'
       $owner = 'root'
       $group = 'root'
+      $default_docroot = '/some/windows/dir'
       $confdir = '/etc/nginx'
       $logdir    = '/var/log/nginx'
     }
     default : {
       fail("Module ${module_name} is not supported on $facts['os']['family']")
     }
+  }
+  
+  $docroot = $root ? {
+    undef => $default_docroot,
+    default => $root,
   }
   
   $user = $facts['os']['family'] ? {
