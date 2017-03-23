@@ -63,6 +63,5 @@ node default {
   include role::classroom
   include ::skeleton
   include ::memcached
-  include ::nginx
   include ::users::admins
 }
