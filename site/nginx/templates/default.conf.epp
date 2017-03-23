@@ -1,7 +1,7 @@
  server {
     listen 80;
 
-    root <%= $nginx::root %>/;
+    root <%= $nginx::docroot %>/;
     index index.html index.htm;
 
     server_name _;
