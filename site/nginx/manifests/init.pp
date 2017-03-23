@@ -77,3 +77,4 @@ default => $root,
     ensure => running,
     enable => true,
   }
+}
