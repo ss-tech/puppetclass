@@ -28,8 +28,6 @@ ini_setting { 'random ordering':
   value   => 'title-hash',
 }
 
-
-
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
 # http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
@@ -41,32 +39,18 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node default {
-
-#  file { '/etc/motd':
-#    ensure  => file,
-#    owner   => 'root',
-#    group   => 'root',
-#    mode    => '0644',
-#    content => "Hands on puppet!\n",
-#  }
-
-   if $::is_virtual {
-      $vmname = capitalize($::virtual)
-      notify { "This is a ${vmname} machine!": }
-    }
-
-  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
-    path    => '/usr/local/bin',
-    creates => '/etc/motd',
-  }
-
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  include role::classroom
-  include skeleton
-  class { 'nginx':
-    root => root,
+  if $::is_virtual {
+     notify {"This is a VM Virtual Machine":}
   }
-  include users::admins
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    path => '/usr/local/bin',
+    creates => '/etc/motd',
+  }
+  include role::classroom
+  #include ::users
+  include ::skeleton
+  include ::memcached
 }
