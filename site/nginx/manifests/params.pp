@@ -34,5 +34,4 @@ class nginx::params{
       fail("Unsupported OS Family ${facts['os']['family']} ")
     }
   }
-
 }
