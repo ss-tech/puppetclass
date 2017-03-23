@@ -1,9 +1,14 @@
 define users::managed_user (
-    $group = $title,
- ) {
+  $group = $title,
+) {
   user { $title:
     ensure => present,
-    home => "/home/{$title}",
-    managedhome => true,
+    home => "/home/${title}",
+    managehome => true,
+  }
+  file { "/home/${title}/.ssh":
+    ensure => directory,
+    owner => $title,
+    group => $group,
   }
 }
