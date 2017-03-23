@@ -7,3 +7,9 @@ mod 'vcsrepo',
 
 mod 'stahnma-epel'
 mod 'puppetlabs-stdlib'
+
+mod 'puppetlabs/apache'
+mod 'puppetlabs/mysql'
+mod 'puppetlabs/concat'
+mod 'puppet/staging'
+mod 'hunner/wordpress'
