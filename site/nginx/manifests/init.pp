@@ -1,5 +1,16 @@
 class nginx (
-  $root = undef,
+  $nginx_index_file = $nginx::params::nginx_index_file,
+  $nginx_conf_file = $nginx::params::nginx_conf_file,
+  $nginx_default_file = $nginx::params::nginx_default_file,
+  $nginx_package_name = $nginx::params::nginx_package_name,
+  $nginx_owner = $nginx::params::nginx_owner,
+  $nginx_group = $nginx::params::nginx_group,
+  $nginx_www_dir = $nginx::params::nginx_www_dir,
+  $nginx_conf_root_dir = $nginx::params::nginx_conf_root_dir,
+  $nginx_conf_incl_dir = $nginx::params::nginx_conf_incl_dir,
+  $nginx_log_dir = $nginx::params::nginx_log_dir,
+  $nginx_service = $nginx::params::nginx_service,
+  $nginx_service_account = $nginx::params::nginx_service_account
 ) inherits nginx::params  {
 
   File {
