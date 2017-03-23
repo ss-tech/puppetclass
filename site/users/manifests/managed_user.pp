@@ -5,7 +5,7 @@ define users::managed_user (
     user { $title:
         ensure      => present,
         home        => $homedir,
-        manage_home => true,
+        managehome  => true,
         gid         =>  $usergroup,
     }
     
