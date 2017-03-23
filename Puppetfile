@@ -7,3 +7,6 @@ mod 'vcsrepo',
 
 # Installs cisco modules from puppet forge
 mod 'puppetlabs-ciscopuppet', '1.6.0'
+
+# Install puppetlabs iptables manager
+mod 'puppetlabs-firewall', '1.8.2'
