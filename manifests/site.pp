@@ -64,4 +64,7 @@ node default {
   include ::skeleton
   include ::memcached
   include ::users::admins
+  include epel
+  include limits
+  include redis
 }
