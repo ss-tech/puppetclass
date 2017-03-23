@@ -58,7 +58,7 @@ default => $root,
         confdir => $confdir,
         logdir => $logdir,
       }),
-    notify => Service['nginx'],,
+    notify => Service['nginx'],
     }
   file { '$confdir/conf.d':
     ensure => directory,
