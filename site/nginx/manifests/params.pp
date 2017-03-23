@@ -4,7 +4,7 @@ class nginx::params{
   $default_file = 'default.conf'
   
   case $facts['os']['family'] {
-    'debian','redhat: {
+    'debian','redhat': {
       $package_name = 'nginx'
       $owner = 'root'
       $group = 'root'
