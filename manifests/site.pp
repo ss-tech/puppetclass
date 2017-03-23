@@ -53,4 +53,9 @@ node default {
   #include ::users
   include ::skeleton
   include ::memcached
+
+  class { 'java':
+    distribution => 'jre',
+  }
+
 }
