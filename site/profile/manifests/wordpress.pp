@@ -12,7 +12,6 @@ class profile::wordpress {
     port => '80',
     priority => '00',
     docroot => '/opt/wordpress',
-    }
   }
 
   class { 'wordpress': }
