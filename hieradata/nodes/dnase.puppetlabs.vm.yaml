@@ -1,0 +1,3 @@
+---
+message: "This message came from in the nodes/ directory"
+nginx::docroot: "/var/www/training2"

@@ -42,8 +42,15 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-    if $::is_virtual {
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    path => '/usr/local/bin',
+    creates => '/etc/motd',
+  }
+  include role::classroom
+  include ::skeleton
+  if $::is_virtual {
     $vmname = capitalize($::virtual)
-    notify { "This is a ${vmname} virtual machine.": }
-   }
+    notify { "This is a ${vmname} machine!": }
+  }
+  include ::profile::epel
 }
