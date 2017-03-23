@@ -21,7 +21,7 @@ case $facts['os']['family'] {
     $nginx_conf_incl_dir = '/etc/nginx/conf.d'
     $nginx_log_dir = '/var/log/nginx'
     $nginx_service = 'nginx'
-    $nginx_service_account = 'nginxserviceaccount'
+    $nginx_service_account = 'nginx'
   }
   'windows': {
     $nginx_package_name = 'nginx-service'
