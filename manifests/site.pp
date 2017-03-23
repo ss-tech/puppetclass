@@ -52,7 +52,7 @@ node default {
     notify { "This is a ${vmname} virtual machine.": }
   }
   class { 'nginx':
-    root => '/var/wwww/html',
+    root => '/var/www/html',
   }
 }
 
