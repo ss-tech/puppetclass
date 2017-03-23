@@ -16,7 +16,7 @@ case $facts['os']['family'] {
     $nginx_package_name = 'nginx'
     $nginx_owner = 'root'
     $nginx_group = 'root'
-    $nginx_www_dir = '/var/www'
+    $nginx_www_dir = '/var/www/'
     $nginx_conf_root_dir = '/etc/nginx'
     $nginx_conf_incl_dir = '/etc/nginx/conf.d'
     $nginx_log_dir = '/var/log/nginx'
