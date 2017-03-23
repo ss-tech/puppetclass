@@ -1,4 +1,4 @@
-class nginx ($root = 'var/www') {
+class nginx ($root = '/var/www') {
   $docroot = $root
   case $facts['os']['family'] {
     'redhat','debian' : {
