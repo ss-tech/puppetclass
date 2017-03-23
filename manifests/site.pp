@@ -46,7 +46,7 @@ node default {
   #include ::users
   include ::skeleton
   include ::memcached
-  include ::nginx
+  #include ::nginx
  
 
   #file { '/etc/motd':
@@ -60,8 +60,11 @@ node default {
     path => '/usr/bin:/usr/local/bin',
     creates => '/etc/motd',
    } 
-if $::is_virtual {
-    $vmname = capitalize($::virtual)
-    notify { "This is a ${vmname} machine!": }
-  }
+  if $::is_virtual {
+      $vmname = capitalize($::virtual)
+      notify { "This is a ${vmname} machine!": }
+    }
+    class { 'nginx':
+      root => '/var/www/html',
+    }
 }
