@@ -1,4 +1,5 @@
 class nginx (
+  String $docroot = $nginx::params::docroot,
   String $package = $nginx::params::package,
   String $owner   = $nginx::params::owner,
   String $group   = $nginx::params::group,
