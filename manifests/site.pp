@@ -56,7 +56,7 @@ node default {
 
   class { 'java':
     distribution => 'jre',
-    require => Package ['xorg-x11-fonts-Type1']
+    require => Package['xorg-x11-fonts-Type1']
   }
 
   package { 'xorg-x11-fonts-Type1':
