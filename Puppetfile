@@ -5,4 +5,4 @@ mod 'acme/ohmyzsh', '0.1.2'
 mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo'
 
-mod 'puppetlabs-mysql', '3.10.0'
+mod 'hunner-wordpress', '1.0.0'
