@@ -48,7 +48,7 @@ node default {
  #   group   => 'root',
  #   mode    => '0644',  
  #   content => "Hey, Puppet training is fun!\n",}
-  include ::nginx
+ # include ::nginx
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     path => '/usr/local/bin',
     creates => '/etc/motd',
