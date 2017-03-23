@@ -3,4 +3,8 @@ class users::admins {
   users::managed_user { ['alice','chen']: 
       usergroup => 'staff',
   }
+  
+  group { [$title, 'staff']:
+      ensure => present,
+  }
 }
