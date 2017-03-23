@@ -37,11 +37,6 @@ ini_setting { 'random ordering':
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
-class profile::nginx {
-  class { 'nginx':
-    root => '/var/www',
-  }
-}
 
 node default {
   # This is where you can declare classes for all nodes.
@@ -52,7 +47,7 @@ node default {
   include ::skeleton
   include ::memcached
   include ::users::admins
-  include profile::nginx
+  include ::nginx
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
