@@ -1,4 +1,8 @@
-class nginx {
+class nginx (
+  $root = undef,
+)
+
+{
   $packageName  = $facts['os']['family'] ? {
     'Debian'  => 'nginx',
     'RedHat'  => 'nginx',
@@ -14,7 +18,7 @@ class nginx {
     'RedHat'  => 'root',
     'Windows' => 'Administrators',
   }
-  $documentRoot= $facts['os']['family'] ? {
+  $default_documentRoot= $facts['os']['family'] ? {
     'Debian'  => '/var/www',
     'RedHat'  => '/var/www',
     'Windows' => 'C:/ProgramData/nginx/html',
@@ -44,7 +48,11 @@ class nginx {
     'RedHat'  => 'nginx',
     'Windows' => 'nobody',
   }
-  
+
+  $documentRoot = $root ? {
+    undef   => $default_documentRoot,
+    default => $root,
+  }
   package { 'nginx':
     ensure => present,
   }
