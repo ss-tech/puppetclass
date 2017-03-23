@@ -31,13 +31,13 @@ class nginx {
     group => 'root',
     mode => '0644',
   }
-  package { 'nginx':
+  package { $package:
     ensure => present,
   }
-  file { ['/var/www', '/etc/nginx/conf.d']:
+  file { [$docroot, "${confdir}/conf.d"]:
     ensure => directory,
   }
-  file { '/var/www/index.html':
+  file { "${docroot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
