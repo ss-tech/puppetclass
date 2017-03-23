@@ -4,10 +4,10 @@
 #        The user's group, .ssh directory, or any other useful resources.
 
 define users::managed_user (
-  $group = $title
+  $group = $title,
 ) {
   user { $title:
   ensure  => present,
   home    => "/home/${user}",
-  
-  
+  }
+}
