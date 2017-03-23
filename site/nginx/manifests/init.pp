@@ -2,7 +2,7 @@ class nginx (
   $root = undef,
 ){
 case $facts['os']['name'] {
-  'redhat','debian' : {
+  'redhat','debian' :{
       $package = 'nginx'
       $owner = 'root'
       $group = 'root'
@@ -11,7 +11,7 @@ case $facts['os']['name'] {
       $logdir = '/var/log/nginx'
       $default_docroot ='/var/www'
       }
-  'windows' : {
+  'windows' :{
     $package = 'nginx-service'
     $owner = 'Administrator'
     $group = 'Administrators'
@@ -20,7 +20,7 @@ case $facts['os']['name'] {
     $logdir = 'C:/ProgramData/nginx/logs'
     $default_docroot = 'C:/ProgramData/nginx/html'
     }
-  default : {
+  default :{
     fail("Module ${module_name} is not supported on ${facts['os']['family']}")
     }
 }
