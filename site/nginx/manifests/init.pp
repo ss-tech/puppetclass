@@ -16,7 +16,9 @@ case $facts['os']['name'] {
     $confdir = 'C:/ProgramData/nginx'
     $logdir = 'C:/ProgramData/nginx/logs'
     }
-}
+  default : {
+    fail("Module ${module_name} is not supported on ${facts['os']['family']}") }
+    }
 $user = $facts['os']['family'] ? {
   'redhat' => 'nginx',
   'debian' => 'www-data',
