@@ -1,4 +1,4 @@
-class vault::vault_wrap {
+class wrapper::vault {
  class { '::vault':
   user => 'vault',
   group => 'vault',
