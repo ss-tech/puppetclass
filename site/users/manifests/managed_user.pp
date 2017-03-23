@@ -9,5 +9,7 @@ define users::managed_user (
     gid       => "staff",
 }
   file { "/home/${title}/.ssh:
-    ensure => directory
+    ensure => directory,
+    owner => $title,
+    group => $title,
 }
