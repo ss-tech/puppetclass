@@ -47,6 +47,9 @@ node default {
   include ::skeleton
   include ::memcached
   include ::users::admins
+  class { 'nginx':
+    root => '/var/www',
+  }
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
