@@ -5,4 +5,4 @@ mod 'acme/ohmyzsh', '0.1.2'
 mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo'
 
-mod 'puppetlabs-java', '1.6.0'
+mod 'puppetlabs-mysql', '3.10.0'
