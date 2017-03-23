@@ -43,13 +43,14 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
+  include role::blog
+
   # include ::users
   include ::skeleton
   include ::memcached
   include ::users::admins
   include ::nginx
   
-  include '::profile::mysql'
   
   if $::is_virtual {
     $vmname = capitalize($::virtual)
