@@ -1,2 +1,2 @@
 ---
-nginx::nginx_rootdir: /var/www-windows
+nginx::nginx_rootdir: C:/ProgramData/nginx/html-windows
