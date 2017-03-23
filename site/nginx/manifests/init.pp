@@ -19,18 +19,18 @@ class nginx (
     mode => '0664'
   }
 
-  package { "${nginx_package_name}":
+  package { "${package_name}":
     ensure => latest,
   }
-  file { [ "${nginx_www_dir}", "${nginx_conf_root_dir}", "${nginx_conf_incl_dir}" ]:
+  file { [ "${www_dir}", "${conf_root_dir}", "${conf_incl_dir}" ]:
     ensure => directory,
   }
-  file { "${nginx_www_dir}/${nginx_index_file}":
+  file { "${www_dir}/${index_file}":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
     #content =>  epp('nginx/index.html'),
   }
-  file { "${nginx_conf_root_dir}/${nginx_conf_file}":
+  file { "${conf_root_dir}/${conf_file}":
     ensure  => file,
     #source  => 'puppet:///modules/nginx/nginx.conf',
     content =>  epp('nginx/nginx.conf.epp',
