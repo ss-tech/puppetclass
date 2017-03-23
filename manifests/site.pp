@@ -56,6 +56,8 @@ node default {
     path => '/usr/bin:/usr/local/bin',  
     creates => '/etc/motd',
     }
+  include wrappers::limits
+  include wrappers::epel
   include role::classroom
   #include ::users
   include skeleton
