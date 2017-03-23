@@ -1,4 +1,8 @@
 class nginx::params{
+  $nginx_index_file = 'index.html'
+  $nginx_conf_file = 'nginx.conf'
+  $nginx_default_file = 'default.conf'
+  
   case $facts['os']['family'] {
     'debian': {
       $nginx_package_name = 'nginx'
