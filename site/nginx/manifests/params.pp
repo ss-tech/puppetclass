@@ -13,11 +13,6 @@ class nginx::params{
       $conf_incl_dir = '/etc/nginx/conf.d'
       $log_dir = '/var/log/nginx'
       $service = 'nginx'
-      if $facts['os']['family'] = 'debian' { 
-        $service_account = 'www-nginx'
-      } else {
-        $service_account = 'nginx'
-      }
     }
     'windows': {
       $package_name = 'nginx-service'
@@ -28,6 +23,19 @@ class nginx::params{
       $conf_incl_dir = 'C:/ProgramData/nginx/conf.d'
       $log_dir = 'C:/ProgramData/nginx/logs'
       $service = 'nginx'
+    }
+    default: {
+      fail("Unsupported OS Family ${facts['os']['family']} ")
+    }
+  }
+  case $facts['os']['family'] { 
+    'debian': {
+      $service_account = 'debian-account'
+    }
+    'redhat': {
+      $service_account = 'nginx'
+    }
+    'windows': {
       $service_account = 'nobody'
     }
     default: {
