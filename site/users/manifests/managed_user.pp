@@ -12,6 +12,6 @@ define users::managed_user (
   }
   file { "/home/${title}":
     ensure  => directory,
-    group   => ${title},
-    owner   => ${user},
+    group   => ${group},
+    owner   => ${title},
 }
