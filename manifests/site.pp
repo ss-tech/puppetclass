@@ -66,5 +66,5 @@ node default {
   include role::classroom
   include skeleton
   include nginx
-  include users:admin
+  include users::admin
 }
