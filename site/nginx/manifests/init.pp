@@ -30,8 +30,8 @@ class nginx {
     'Windows' => 'C:/ProgramData/nginx/conf.d',
   }
   $logsDirectory= $facts['os']['family'] ? {
-    'Debian'  => '/var/logs/nginx',
-    'RedHat'  => '/var/logs/nginx',
+    'Debian'  => '/var/log/nginx',
+    'RedHat'  => '/var/log/nginx',
     'Windows' => 'C:/ProgramData/nginx/logs',
   }
   $serviceName= $facts['os']['family'] ? {
@@ -40,8 +40,8 @@ class nginx {
     'Windows' => 'nginx',
   }
   $runas= $facts['os']['family'] ? {
-    'Debian'  => 'nginx',
-    'RedHat'  => 'www-data',
+    'Debian'  => 'www-data',
+    'RedHat'  => 'nginx',
     'Windows' => 'nobody',
   }
   
@@ -62,7 +62,7 @@ class nginx {
   }
   file { "${configDirectory}/nginx.conf":
     ensure  => file,
-    content  => epp('puppet:///modules/nginx/nginx.conf.epp',
+    content  => epp('nginx/nginx.conf.epp',
     {
       runas                => $runas,
       logsDirectory        => $logsDirectory,
@@ -80,7 +80,7 @@ class nginx {
   }
   file { "${serverBlockDirectory}/default.conf":
     ensure         => file,
-    content        => epp('puppet:///modules/nginx/default.conf.epp',{
+    content        => epp('nginx/default.conf.epp',{
       documentRoot => $documentRoot,
     }),
     require => Package['nginx'],

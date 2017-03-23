@@ -50,7 +50,7 @@ node default {
   include ::role::classroom
   include ::skeleton
   include ::memcached
-  #include ::nginx
+  include ::nginx
 
   notice ("$vmtype is the type of virtualization")
    # file { "/etc/motd":

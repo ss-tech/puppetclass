@@ -5,7 +5,7 @@
 user              <%= $runas %>;
 worker_processes  1;
 
-error_log  <%= $logsDirectory %>;
+error_log  <%= $logsDirectory %>/error.log;
 #error_log  /var/log/nginx/error.log  notice;
 #error_log  /var/log/nginx/error.log  info;
 
@@ -37,6 +37,6 @@ http {
 
     # Load config files from the /etc/nginx/conf.d directory
     # The default server is in conf.d/default.conf
-    include <%$ $serverBlockDirectory %>/*.conf;
+    include <%= $serverBlockDirectory %>/*.conf;
 
 }
